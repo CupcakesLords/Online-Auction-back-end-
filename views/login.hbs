@@ -1,0 +1,196 @@
+{{#section 'css'}}
+<link rel="stylesheet" type="text/css" href="/font-awesome/iconic/css/material-design-iconic-font.min.css" />
+{{/section}}
+
+<!-- main content -->
+<div class="main-content">
+    <div class="login-page container" style="display: flex;">
+        <div class="wrap-login text-center">
+            {{#if err_message}}
+            <div class="row">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="
+            position: fixed;
+            display: block; 
+            width: 300px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            transform: translate(-50%, -50%);
+            z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+            cursor: pointer; /* Add a pointer on hover */
+          ">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{err_message}}
+                </div>
+            </div>
+            {{/if}}
+            <form method="POST" id="login-form" class="login-form validate-form" style="display: block">
+                <span class="login-form-title p-tb-15">
+                    Đăng nhập
+                </span>
+
+                <div class="wrap-input text-left validate-input" data-validate="Username is required">
+                    <span class="label-input">Tài khoản</span>
+                    <input class="input" type="text" name="username" placeholder="Nhập tài khoản" required />
+                    <span class="focus-input" data-symbol="&#xf206;"></span>
+                </div>
+
+                <div class="wrap-input text-left validate-input p-t-5" data-validate="Password is required">
+                    <span class="label-input">Mật khẩu</span>
+                    <input class="input" type="password" name="password" placeholder="Nhập mật khẩu" required />
+                    <span class="focus-input" data-symbol="&#xf190;"></span>
+                </div>
+
+                <div class="text-right p-tb-20">
+                    <a href="forgetpassword.html" class="forget-pw-btn">
+                        Quên mật khẩu?
+                    </a>
+                </div>
+
+                <div class="container-login-form-btn">
+                    <div class="wrap-login-form-btn">
+                        <div class="login-form-bgbtn"></div>
+                        <button class="login-form-btn">
+                            Đăng nhập
+                        </button>
+                    </div>
+                </div>
+
+                <div class=" text-center p-t-54 p-b-20">
+                    <span>
+                        Hoặc đăng nhập bằng cách
+                    </span>
+                </div>
+
+                <div class="flex-c-m">
+                    <a href="#" class="login-social-item bg1">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+
+                    <a href="#" class="login-social-item bg2">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+
+                    <a href="#" class="login-social-item bg3">
+                        <i class="fa fa-google"></i>
+                    </a>
+                </div>
+
+                <div class="flex-col-c p-t-65">
+                    <span class=" p-b-17">
+                        Hoặc đăng ký tài khoản
+                    </span>
+
+                    <a href="/account/register" class="p-b-15 signup-btn">
+                        Đăng ký
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="forgetpassword-page container" style="display: none;">
+        <div class="wrap-login text-center">
+            <form method="POST" id="forgetpassword-form" class="login-form">
+                <span class="login-form-title p-tb-15">
+                    Quên mật khẩu
+                </span>
+                <div class="wrap-input text-left validate-input" data-validate="Username is required">
+                    <span class="label-input">Tài khoản</span>
+                    <input class="input" type="text" name="username" placeholder="Nhập tài khoản" required />
+                    <span class="focus-input" data-symbol="&#xf206;"></span>
+                </div>
+
+                <div class="wrap-input text-left validate-input p-t-5" data-validate="Password is required">
+                    <span class="label-input">Email</span>
+                    <input class="input" type="email" name="email" placeholder="Nhập email" required />
+                    <span class="focus-input" data-symbol="&#xf15a;"></span>
+                </div>
+                <div class="text-center p-tb-20">
+                    <i class="fa fa-arrow-left" style="color: #007bff;"></i>
+                    <a href="#" class="back-login-btn">
+                        Quay lại
+                    </a>
+                </div>
+                <div class="container-login-form-btn p-b-25">
+                    <div class="wrap-login-form-btn">
+                        <div class="login-form-bgbtn"></div>
+                        <button class="login-form-btn">
+                            Lấy lại mật khẩu
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="signup-page container" style="display: none;">
+        <div class="wrap-login text-center">
+            <form method="POST" id="signup-form" class="login-form">
+                <span class="login-form-title p-tb-15">
+                    Đăng ký
+                </span>
+                <div class="wrap-input text-left validate-input" data-validate="Username is required">
+                    <span class="label-input">Tài khoản</span>
+                    <input class="input" type="text" name="username" placeholder="Nhập tài khoản" required />
+                    <span class="focus-input" data-symbol="&#xf206;"></span>
+                </div>
+
+                <div class="wrap-input text-left validate-input p-t-5" data-validate="Password is required">
+                    <span class="label-input">Mật khẩu</span>
+                    <input type="password" class="input" name="password" id="password" placeholder="Mật khẩu"
+                        required />
+                    <span class="focus-input" data-symbol="&#xf190;"></span>
+                    <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                </div>
+
+                <div class="wrap-input text-left validate-input p-t-5" data-validate="Password is required">
+                    <span class="label-input">Nhập lại mật khẩu</span>
+                    <input type="password" class="input" name="re_password" id="re_password"
+                        placeholder="Nhập lại mật khẩu" required />
+                    <span class="focus-input" data-symbol="&#xf190;"></span>
+                </div>
+
+                <div class="wrap-input text-left validate-input p-t-5" data-validate="Password is required">
+                    <span class="label-input">Họ tên</span>
+                    <input type="text" class="input" name="name" id="name" placeholder="Nhập họ tên" required />
+                    <span class="focus-input" data-symbol="&#xf10c;"></span>
+                </div>
+
+                <div class="wrap-input text-left validate-input p-t-5" data-validate="Password is required">
+                    <span class="label-input">Email</span>
+                    <input class="input" type="email" name="email" placeholder="Nhập email" required />
+                    <span class="focus-input" data-symbol="&#xf15a;"></span>
+                </div>
+
+                <div class="wrap-input text-left validate-input p-t-5" data-validate="Password is required">
+                    <span class="label-input">Địa chỉ</span>
+                    <input type="text" class="input" name="address" id="address" placeholder="Nhập địa chỉ" required />
+                    <span class="focus-input" data-symbol="&#xf299;"></span>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                    <label for="agree-term" class="label-agree-term"><span><span></span></span>Tôi đã đọc và đồng ý với
+                        <a href="#" class="term-service">Điều khoản sử dụng</a></label>
+                </div>
+                <div class="text-center p-b-20">
+                    <i class="fa fa-arrow-left" style="color: #007bff;"></i>
+                    <a href="#" class="back-login-btn">
+                        Quay lại
+                    </a>
+                </div>
+                <div class="container-login-form-btn p-b-25">
+                    <div class="wrap-login-form-btn">
+                        <div class="login-form-bgbtn"></div>
+                        <button class="login-form-btn">
+                            Đăng ký
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- main content end -->

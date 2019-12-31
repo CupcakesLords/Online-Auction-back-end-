@@ -1,0 +1,264 @@
+<!-- main content -->
+
+<div class="main-content">
+    <div class="page-top-info">
+        <div class="container">
+            <h4>Chi tiết sản phẩm</h4>
+        </div>
+    </div>
+    <section class="product-section">
+        <div class="container">
+            <div class="back-link">
+                <a href="/listproduct"> &lt;&lt; Trở về danh sách sản phẩm</a>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="product-pic-zoom">
+                        <img class="product-big-img" src={{this.product.Image}} alt="" />
+                    </div>
+                    <div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none;">
+                        <div class="product-thumbs-track">
+                            <div class="pt active" data-imgbigurl="images/laptop/macbookpro-2017-1.webp">
+                                <img src="/images/laptop/macbookpro-2017-1.webp" alt="" />
+                            </div>
+                            <div class="pt" data-imgbigurl="images/laptop/macbookpro-2017-2.webp">
+                                <img src="/images/laptop/macbookpro-2017-2.webp" alt="" />
+                            </div>
+                            <div class="pt" data-imgbigurl="images/laptop/macbookpro-2017-3.webp">
+                                <img src="/images/laptop/macbookpro-2017-3.webp" alt="" />
+                            </div>
+                            <div class="pt" data-imgbigurl="images/laptop/laptop-macbookpro-2017.png">
+                                <img src="/images/laptop/laptop-macbookpro-2017.png" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 product-details">
+                    <h2 class="p-title">{{this.product.ProductName}}</h2>
+                    <h3 class="p-price">Giá hiện tại: ${{this.product.CurrentPrice}}</h3>
+                    <h3 class="p-price">Giá mua ngay: ${{this.product.Threshold}}</h3>
+                    <h4 class="p-stock">Tình trạng: <span>
+                        {{#if bidable}}
+                            {{#if unsold}}
+                                Đang đấu giá
+                            {{else}}
+                                Không còn đấu giá
+                            {{/if}}
+                        {{else}}
+                        Không còn đấu giá
+                        {{/if}}</span></h4>
+                    <h4 class="p-stock">
+                        <a href="/listproduct/{{this.product.Id}}/history"><span>Lịch sử đấu giá</span></a>
+                    </h4>
+                    <div class="p-rating">
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o fa-fade"></i>
+                    </div>
+                    <div class="info-product">
+                        <h4 class="p-stock">
+                            Thông tin người bán & điểm đánh giá:
+                            <span class="span1">Admin (80 điểm)</span>
+                        </h4>
+                    </div>
+                    <div class="info-product">
+                        <h4 class="p-stock">
+                            Thông tin người đặt giá cao nhất & điểm đánh giá:
+                            <span class="span1">Admin1 (86 điểm)</span>
+                        </h4>
+                    </div>
+                    <div class="info-product">
+                        <h4 class="p-stock">
+                            Thời gian đăng: <span>{{this.product.UploadDate}}</span>
+                        </h4>
+                    </div>
+                    <div class="info-product">
+                        <h4 class="p-stock">
+                            Thời gian kết thúc: <span>
+                                {{#if bidable}}
+                                {{this.remain}} ngày
+                                {{else}}
+                                Không còn đấu giá
+                                {{/if}}
+                            </span>
+                        </h4>
+                    </div>
+
+                    {{#if bidable}}
+                        {{#if unsold}}
+                            <form action="/listproduct/:id" method="POST">
+                                <input type="text" name="BID" placeholder="Enter BID: (at least {{this.leastprice}}$)" />
+                                <input class="site-btn" type="submit" value="BID" />
+                            </form>
+                        {{else}}
+        
+                        {{/if}}
+                    {{else}}
+                    {{/if}}
+
+                    <!-- Lưu sản phẩm yêu thích -->
+                    <a class="wishlist-btn color-666666" id="like" name="like"><i class="fa fa-heart-o"></i></a>
+
+                    <div id="accordion" class="accordion-area">
+                        <div class="panel">
+                            <div class="panel-header" id="headingOne">
+                                <button class="panel-link active" data-toggle="collapse" data-target="#collapse1"
+                                    aria-expanded="true" aria-controls="collapse1">
+                                    Thông tin chi tiết
+                                </button>
+                            </div>
+                            <div id="collapse1" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#accordion">
+                                <div class="panel-body">
+                                    <h3>Apple MacBook Pro 13 inch 128GB MPXQ2 (2017)</h3>
+                                    <img src="/images/laptop/macbookpro-2017-1.webp" alt="" width="560px"
+                                        height="320px" />
+                                    <p>
+                                        Apple MacBook Pro 13 inch 128GB MPXQ2 nói riêng và dòng
+                                        MacBook nói chung đến từ Apple luôn là sự lựa chọn hàng
+                                        đầu của những khách hàng ưa thích sự sang trọng và đẳng
+                                        cấp. Với phiên bản Apple MacBook Pro 2017 càng gây nên
+                                        sự chú ý đặc biệt với người dùng, hứa hẹn mở ra trào lưu
+                                        mới cho thế hệ MacBook.
+                                    </p>
+                                    <h4>
+                                        Thiết kế và ngoại hình Apple MacBook Pro 13 inch 128GB
+                                        MPXQ2
+                                    </h4>
+                                    <p>
+                                        Sở hữu thiết kế mỏng và nhẹ với màn hình LED-backlit IPS
+                                        LCD, 2560 x 1600 pixels, 13.3 inches làm cho hình ảnh
+                                        hiển thị cực kì sắc nét và thực tế.
+                                        <br />
+                                        <br />
+                                        <img src="/images/laptop/macbookpro-2017-2.webp" alt="" width="560px"
+                                            height="320px" />
+                                        <br />
+                                        Máy được tạo nên từ kim loại nguyên khối, tuy nhiên
+                                        chúng còn mỏng và nhẹ hơn rất nhiều so với phiên bản cũ
+                                        với trọng lượng chỉ 1.37kg.
+                                    </p>
+                                    <h4>
+                                        Apple MacBook Pro 13 inch 128GB MPXQ2 lưu lượng pin cực
+                                        bền
+                                    </h4>
+                                    <img src="/images/laptop/macbookpro-2017-3.webp" alt="" width="560px"
+                                        height="320px" />
+                                    <p>
+                                        Lượng pin của Apple MacBook Pro 13 inch 128GB MPXQ2 được
+                                        sử dụng liên tục lên đến 10 giờ đáp ứng được các yêu cầu
+                                        của người dùng như chơi game, làm việc với thời gian
+                                        lâu, làm việc bất cứ nơi đâu, …mà không phải lo hết pin.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-header" id="headingTwo">
+                                <button class="panel-link" data-toggle="collapse" data-target="#collapse2"
+                                    aria-expanded="false" aria-controls="collapse2">
+                                    Thông tin bảo hành
+                                </button>
+                            </div>
+                            <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                <div class="panel-body">
+                                    <p>
+                                        Sản phẩm hỗ trợ bảo hành trong vòng 1-2 năm.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-header" id="headingThree">
+                                <button class="panel-link" data-toggle="collapse" data-target="#collapse3"
+                                    aria-expanded="false" aria-controls="collapse3">
+                                    Giao hàng và nhận hàng
+                                </button>
+                            </div>
+                            <div id="collapse3" class="collapse" aria-labelledby="headingThree"
+                                data-parent="#accordion">
+                                <div class="panel-body">
+                                    <h4>Đổi trả trong vòng 7 ngày</h4>
+                                    <p>
+                                        Giao hàng: COD<br />Nhận hàng trong:
+                                        <span>3 - 4 ngày</span>
+                                    </p>
+                                    <p>
+                                        Nội thành TP. HCM: Miễn phí.
+                                        <br />
+                                        Ngoại thành và các tỉnh khác: Có tính phí
+                                    </p>
+                                    <img src="/images/cards.png" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-sharing">
+                        <a href=""><i class="fa fa-google-plus"></i></a>
+                        <a href=""><i class="fa fa-pinterest"></i></a>
+                        <a href=""><i class="fa fa-facebook"></i></a>
+                        <a href=""><i class="fa fa-twitter"></i></a>
+                        <a href=""><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RELATED PRODUCTS section -->
+    <section class="related-product-section">
+        <div class="container">
+            <div class="header-related-product">
+                <h2 class="text-center p-tb-20 font-weight-bold">
+                    SẢN PHẨM LIÊN QUAN
+                </h2>
+            </div>
+            <div class="row content-related-product">
+                <div class="col-md-2 col-lg-2 txt-center">
+                    <img src="/images/laptop/laptop-redmibook.png" alt="image" width="200px" height="200px"
+                        class="m-b-5" />
+                    <h5>Redmi notebook</h5>
+                    <a href="#">Xem chi tiết sản phẩm</a>
+                </div>
+                <div class="col-md-2 col-lg-2 txt-center">
+                    <img src="/images/laptop/laptop-rog-strix.png" alt="image" width="200px" height="200px"
+                        class="m-b-5" />
+                    <h5>Asus ROG STRIX</h5>
+                    <a href="#">Xem chi tiết sản phẩm</a>
+                </div>
+                <div class="col-md-2 col-lg-2 txt-center">
+                    <img src="/images/laptop/laptop-vivobook-14.png" alt="image" width="200px" height="200px"
+                        class="m-b-5" />
+                    <h5>Vivobook 2014</h5>
+                    <a href="#">Xem chi tiết sản phẩm</a>
+                </div>
+                <div class="col-md-2 col-lg-2 txt-center">
+                    <img src="/images/laptop/laptop-xps15.png" alt="image" width="200px" height="200px" class="m-b-5" />
+                    <h5>Dell XPS15</h5>
+                    <a href="#">Xem chi tiết sản phẩm</a>
+                </div>
+                <div class="col-md-2 col-lg-2 txt-center">
+                    <img src="/images/laptop/laptop-macbookpro-2017.png" alt="image" width="200px" height="200px"
+                        class="m-b-5" />
+                    <h5>Macbook Pro 2017</h5>
+                    <a href="#">Xem chi tiết sản phẩm</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="confirm">
+        <div></div>
+        <div>
+            <div id="confirmMessage">Confirm text</div>
+            <div>
+                <input id="confirmYes" type="button" value="Xác nhận" />
+                <input id="confirmNo" type="button" value="Huỷ bỏ" />
+            </div>
+        </div>
+    </div>
+    <!-- RELATED PRODUCTS section end -->
+</div>
+
+<!-- main content end -->

@@ -1,0 +1,60 @@
+<!-- main content -->
+
+<div class="main-content">
+    <div class="page-top-info">
+        <div class="container">
+            <h4>Lịch sử đấu giá</h4>
+        </div>
+    </div>
+    <section class="product-section">
+        <div class="container">
+            <div class="back-link">
+                <a href="/listproduct/{{this.temp}}"> &lt;&lt; Trở về chi tiết sản phẩm</a>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="product-pic-zoom">
+                        <img class="product-big-img" src="/images/laptop/laptop-macbookpro-2017.png" alt="" />
+                    </div>
+                    <div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none;">
+                        <div class="product-thumbs-track">
+                            <div class="pt active" data-imgbigurl="./images/laptop/macbookpro-2017-1.webp">
+                                <img src="/images/laptop/macbookpro-2017-1.webp" alt="" />
+                            </div>
+                            <div class="pt" data-imgbigurl="./images/laptop/macbookpro-2017-2.webp">
+                                <img src="/images/laptop/macbookpro-2017-2.webp" alt="" />
+                            </div>
+                            <div class="pt" data-imgbigurl="./images/laptop/macbookpro-2017-3.webp">
+                                <img src="/images/laptop/macbookpro-2017-3.webp" alt="" />
+                            </div>
+                            <div class="pt" data-imgbigurl="./images/laptop/laptop-macbookpro-2017.png">
+                                <img src="/images/laptop/laptop-macbookpro-2017.png" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 product-details">
+                    <h2 class="p-title">{{this.product.ProductName}}</h2>
+                    <div class="history-bid table table-striped">
+                        <table>
+                            <tr>
+                                <th>Thời điểm</th>
+                                <th>Người mua</th>
+                                <th>Giá</th>
+                            </tr>
+                            {{#each this.bids}}
+                            <tr>
+                                <td>{{BidDate}}</td>
+                                <td>{{UserName}}</td>
+                                <td>${{Price}}</td>
+                            </tr>
+                            {{/each}}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- main content end -->

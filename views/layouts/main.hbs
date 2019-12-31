@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Auction Online</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="/css/util.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    {{{_sections.css}}}
+</head>
+
+<body>
+    <!-- Header section start -->
+    <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 text-center text-lg-left">
+                        <!-- logo -->
+                        <a href="/" class="site-logo">
+                            <img src="/images/logo.PNG" alt="logo" width="162px" height="31px" />
+                        </a>
+                    </div>
+                    <div class="col-xl-6 col-lg-5">
+                        <form class="header-search-form">
+                            <input type="text" placeholder="Tìm kiếm" />
+                            <button><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                    <div class="col-xl-4 col-lg-5">
+                        <form id="frmLogout" action="/account/logout" method="post"></form>
+                        <div class="user-panel">
+                            {{#if lcIsAuthenticated}}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    Welcome, {{lcAuthUser.name}}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/account/profile">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        Account Profile
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                            </li>
+                            {{else}}
+                            <div class="up-item">
+                                <i class="fa fa-user"></i>
+                                <a href="/account/login">Đăng nhập</a> hoặc <a href="/account/register">Đăng ký</a>
+                            </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="main-navbar">
+            <div class="container">
+                <!-- menu -->
+                <ul class="main-menu">
+                    <li><a href="/account/profile">Hồ sơ</a></li>
+                    <li>
+                        <a href="/listproduct">Danh sách sản phẩm
+                            <span class="new">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./viewbidder/wishlist.html">Yêu thích</a>
+                    </li>
+                    <li><a href="./viewseller/postproduct.html">Đăng bán</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Header section end -->
+
+    {{{body}}}
+
+    <!-- Footer section -->
+    <section class="footer-section">
+        <div class="container">
+            <div class="footer-logo text-center">
+                <a href="/"><img src="/images/logo-light.png" alt="logo" width="220px" height="50px" /></a>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="footer-widget about-widget">
+                        <h2>Thanh toán</h2>
+                        <p>
+                            Công ty Auction Online chúng tôi hỗ trợ thanh toán với nhiều hình thức khác nhau
+                        </p>
+                        <img src="/images/cards.png" alt="" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="footer-widget about-widget">
+                        <h2>Về Auction Online</h2>
+                        <ul>
+                            <li><a href="">Giới thiệu Auction Online</a></li>
+                            <li><a href="">Tuyển dụng</a></li>
+                            <li><a href="">Chính sách bảo mật thanh toán</a></li>
+                            <li><a href="">Chính sách bảo mật thông tin cá nhân</a></li>
+                            <li><a href="">Điều khoản sử dụng</a></li>
+                            <li><a href="">Vận chuyển</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="footer-widget about-widget">
+                        <h2>TIN TỨC</h2>
+                        <div class="fw-latest-post-widget">
+                            <div class="lp-item">
+                                <div class="lp-thumb set-bg">
+                                    <img src="/images/blog-thumbs/1.jpg" alt="" />
+                                </div>
+                                <div class="lp-content">
+                                    <h6>what shoes to wear</h6>
+                                    <span>Oct 21, 2019</span>
+                                    <a href="#" class="readmore">Read More</a>
+                                </div>
+                            </div>
+                            <div class="lp-item">
+                                <div class="lp-thumb set-bg">
+                                    <img src="/images/blog-thumbs/2.jpg" alt="" />
+                                </div>
+                                <div class="lp-content">
+                                    <h6>trends this year</h6>
+                                    <span>Oct 21, 2019</span>
+                                    <a href="#" class="readmore">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="footer-widget contact-widget">
+                        <h2>Thông tin</h2>
+                        <div class="con-info">
+                            <span>Công ty:</span>
+                            <p>Auction Online</p>
+                        </div>
+                        <div class="con-info">
+                            <span>Địa chỉ.</span>
+                            <p>227 Nguyễn Văn Cừ, Quận 5, TP Hồ Chí Minh</p>
+                        </div>
+                        <div class="con-info">
+                            <span>Hotline:</span>
+                            <p>+84 1800 1900</p>
+                        </div>
+                        <div class="con-info">
+                            <span>Email:</span>
+                            <p>info@auctiononline.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="social-links-warp">
+            <div class="container">
+                <div class="social-links text-center">
+                    <a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+                    <a href="" class="google-plus"><i class="fa fa-google-plus"></i><span>g+plus</span></a>
+                    <a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
+                    <a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+                    <a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+                    <a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
+                </div>
+
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                <p class="text-white text-center mt-5">
+                    Copyright &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    All rights reserved | This template is made with
+                    <i class="fa fa-heart-o" aria-hidden="true"></i> by CMD and NTT
+                </p>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </div>
+        </div>
+    </section>
+    <!-- Footer section end -->
+
+    <!-- javascript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="/js/app.js"></script>
+    {{{_sections.js}}}
+</body>
+
+</html>

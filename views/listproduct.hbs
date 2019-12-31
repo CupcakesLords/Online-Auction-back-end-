@@ -1,0 +1,150 @@
+<div class="main-content">
+    <div class="page-top-info">
+        <div class="container">
+            <h4>Danh sách sản phẩm</h4>
+        </div>
+    </div>
+    <div class="container p-tb-50">
+        <div class="row">
+            <div class="col-3">
+                <div class="sidebar-categories">
+                    <div class="head">Danh sách sản phẩm</div>
+                    <ul class="main-categories">
+                        <li class="main-nav-list">
+                            <a data-toggle="collapse" href="#electric" aria-expanded="false"
+                                aria-controls="electric"><span class="lnr lnr-arrow-right"></span>Điện tử</a>
+                            <ul class="collapse" id="electric" data-toggle="collapse" aria-expanded="false"
+                                aria-controls="electric">
+                                {{#each lcCategories}}
+                                <li class="main-nav-list child">
+                                    <a href="/listproduct/byCat/{{id}}">{{category}}<span
+                                            class="number">({{ProNum}})</span></a>
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sidebar-filter mt-50">
+                    <div class="top-filter-head">Lọc sản phẩm</div>
+                    <div class="common-filter">
+                        <div class="head">Thương hiệu</div>
+                        <form action="#">
+                            <ul>
+                                <li class="filter-list">
+                                    <input class="pixel-radio" type="radio" id="apple" name="brand" /><label
+                                        for="apple">Apple<span>(29)</span></label>
+                                </li>
+                                <li class="filter-list">
+                                    <input class="pixel-radio" type="radio" id="asus" name="brand" /><label
+                                        for="asus">Asus<span>(29)</span></label>
+                                </li>
+                                <li class="filter-list">
+                                    <input class="pixel-radio" type="radio" id="gionee" name="brand" /><label
+                                        for="gionee">Xiaomi<span>(19)</span></label>
+                                </li>
+                                <li class="filter-list">
+                                    <input class="pixel-radio" type="radio" id="micromax" name="brand" /><label
+                                        for="micromax">HP<span>(19)</span></label>
+                                </li>
+                                <li class="filter-list">
+                                    <input class="pixel-radio" type="radio" id="samsung" name="brand" /><label
+                                        for="samsung">Dell<span>(19)</span></label>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-9">
+                <!-- Start Filter Bar -->
+                <div class="filter-bar d-flex flex-wrap align-items-center">
+                    <div class="sorting">
+                        <select class="nice-select">
+                            <option value="1">Thời gian kết thúc giảm dần</option>
+                            <option value="2">Thời gian kết thúc tăng dần</option>
+                            <option value="3">Giá tăng dần</option>
+                            <option value="4">Giá giảm dần</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- End Filter Bar -->
+                <!-- Start Best Seller -->
+                <section class="lattest-product-area pb-40 category-list">
+                    <div class="row">
+                        <!-- single product -->
+                        {{#each this.products}}
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-product">
+                                <img class="img-fluid" src={{Image}} alt="" />
+                                <div class="product-details">
+                                    <h6>{{ProductName}}</h6>
+                                    <br />
+                                    <div class="price">
+                                        <h6>Current price: {{CurrentPrice}}$</h6>
+                                    </div>
+                                    <div class="price">
+                                        <h6>Threshold: {{Threshold}}$</h6>
+                                    </div>
+                                    <div class="price">
+                                        <p>Upload date: {{UploadDate}}</p>
+                                    </div>
+                                    <div class="price">
+                                        <p>Days for bidding: {{DaysLeft}}</p>
+                                    </div>
+                                    <div class="prd-bottom">
+                                        <a href="" class="social-info">
+                                            <span class="fa fa-shopping-bag"></span>
+                                            <p class="hover-text">Đấu giá</p>
+                                        </a>
+                                        <a href="" class="social-info">
+                                            <span class="fa fa-heart"></span>
+                                            <p class="hover-text">Yêu thích</p>
+                                        </a>
+                                        <a href="/listproduct/{{Id}}" class="social-info">
+                                            <span class="fa fa-info"></span>
+                                            <p class="hover-text">Chi tiết</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                        <!-- single product -->
+                    </div>
+                </section>
+                <!-- End Best Seller -->
+                <!-- Start Filter Bar -->
+                <div class="filter-bar d-flex flex-wrap align-items-center justify-content-center">
+                    <div class="pagination text-center">
+                        <li class="page-item {{#unless this.can_go_prev}}disabled{{/unless}}">
+                            <a class="page-link" href="?page={{prev_value}}" tabindex="-1" aria-disabled="true">
+                                <i class="fa fa-backward" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        {{#each this.page_items}}
+                        {{#if this.isActive}}
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="javascript:;">{{value}} <span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+                        {{else}}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{value}}">{{value}}</a>
+                        </li>
+                        {{/if}}
+                        {{/each}}
+                        <li class="page-item {{#unless this.can_go_next}}disabled{{/unless}}">
+                            <a class="page-link" href="?page={{next_value}}">
+                                <i class="fa fa-forward" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </div>
+                </div>
+                <!-- End Filter Bar -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- main content end -->

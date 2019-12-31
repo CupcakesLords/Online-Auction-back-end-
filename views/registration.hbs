@@ -1,0 +1,137 @@
+{{#section 'css'}}
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+<link rel="stylesheet" type="text/css" href="/font-awesome/iconic/css/material-design-iconic-font.min.css" />
+{{/section}}
+
+{{#section 'js'}}
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script>
+    $('#txtDOB').datetimepicker({
+        format: 'd/m/Y',
+        timepicker: false,
+        mask: true,
+    });
+    /*
+    $('#frmRegister').submit(function (event) {
+        event.preventDefault();
+        validate();
+    });
+
+    function validate() {
+        const username = $('#txtUsername').val();
+        $.getJSON(`/account/is-available?user=${username}`, function (data) {
+            if (data === true) {
+                $('#frmRegister').off('submit').submit();
+            }
+            else {
+                alert('not available');
+            }
+        })
+    }
+    */
+</script>
+{{/section}}
+
+<!-- main content -->
+
+<div class="main-content">
+    <div class="signup-page container">
+        <div class="wrap-login text-center">
+            {{#if err_message}}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{err_message}}
+            </div>
+            {{/if}}
+            <form method="POST" id="frmRegister" class="login-form">
+                <span class="login-form-title p-tb-15">
+                    Đăng ký
+                </span>
+                <div class="wrap-input text-left validate-input" data-validate="Username is required">
+                    <span class="label-input">Tài khoản</span>
+                    <input class="input" type="text" id="txtUsername" name="username" placeholder="Nhập tài khoản"
+                        required />
+                    <span class="focus-input" data-symbol="&#xf206;"></span>
+                </div>
+
+                <div class="wrap-input text-left validate-input p-t-5" data-validate="Password is required">
+                    <span class="label-input">Mật khẩu</span>
+                    <input type="password" class="input" name="password" id="password" placeholder="Mật khẩu"
+                        required />
+                    <span class="focus-input" data-symbol="&#xf190;"></span>
+                    <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                </div>
+
+                <div class="wrap-input text-left validate-input p-t-5" data-validate="Password is required">
+                    <span class="label-input">Nhập lại mật khẩu</span>
+                    <input type="password" class="input" name="re_password" id="re_password"
+                        placeholder="Nhập lại mật khẩu" required />
+                    <span class="focus-input" data-symbol="&#xf190;"></span>
+                </div>
+
+                <div class="wrap-input text-left validate-input p-t-5" data-validate="Name is required">
+                    <span class="label-input">Họ tên</span>
+                    <input type="text" class="input" name="name" id="name" placeholder="Nhập họ tên" required />
+                    <span class="focus-input" data-symbol="&#xf10c;"></span>
+                </div>
+
+                <div class="wrap-input text-left validate-input p-t-5" data-validate="Email is required">
+                    <span class="label-input">Email</span>
+                    <input class="input" type="email" name="email" placeholder="Nhập email" required />
+                    <span class="focus-input" data-symbol="&#xf15a;"></span>
+                </div>
+
+                <div class="wrap-input text-left validate-input p-t-5" data-validate="Birthday is required">
+                    <span class="label-input" for="txtDOB">Ngày sinh</span>
+                    <input type="text" class="input" name="dob" id="txtDOB" required />
+                    <span class="focus-input" data-symbol="&#xf10c;"></span>
+                </div>
+
+                <p class="loginhere">
+                    Đã có tài khoản ?
+                    <a href="/account/login" class="loginhere-link">Đăng nhập</a>
+                </p>
+
+                <div class="container-login-form-btn p-b-25">
+                    <div class="wrap-login-form-btn">
+                        <div class="login-form-bgbtn"></div>
+                        <button class="login-form-btn">
+                            Đăng ký
+                        </button>
+                    </div>
+                </div>
+                <!-- 
+            
+            <div class="form-group">
+                <input
+                type="checkbox"
+                name="agree-term"
+                id="agree-term"
+                class="agree-term"
+                />
+                <label for="agree-term" class="label-agree-term"
+                ><span><span></span></span>Tôi đã đọc và đồng ý với
+                <a href="#" class="term-service">Điều khoản sử dụng</a></label
+                >
+            </div>
+            <div class="container-login-form-btn">
+                <div class="wrap-login-form-btn">
+                <div class="login-form-bgbtn"></div>
+                <button class="login-form-btn">
+                    Đăng ký
+                </button>
+                </div>
+            </div>
+            <p class="loginhere">
+                Đã có tài khoản ? <a href="#" class="loginhere-link">Đăng nhập</a>
+                </p> -->
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- main content end -->
