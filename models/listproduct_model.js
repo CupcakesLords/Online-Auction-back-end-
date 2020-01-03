@@ -26,4 +26,7 @@ module.exports = {
     countBidsByID: id => db.load(`select count(*) as total from Bids where ProductId = ${id}`),
     fixCurrent: (id, newprice) => db.load(`update Product set CurrentPrice = ${newprice} where Id = ${id}`),
     //UPDATE `productlist`.`Product` SET `CurrentPrice` = '200' WHERE (`Id` = '7');
+    addLike: like => db.add(like, 'Likes'),
+    findLike: (UserID, ProId) => db.load(`select * from Likes where UserId = ${UserID} and ProId = ${ProId}`),
+    delLike: (UserID, ProId) => db.load(`delete from Likes where UserId = ${UserID} and ProId = ${ProId}`),
 }

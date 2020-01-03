@@ -84,7 +84,9 @@ router.get('/byCat/:catId', async function (req, res) {
 })
 
 router.get('/:id', async function (req, res) {
-
+    if (!req.session.isAuthenticated) {
+        return res.redirect('/account/login');
+    }
     const results = await listproductModel.single(req.params.id);
     //const bids = await listproductModel.allBidsByID(req.params.id);
     //console.log(results[0].UploadDate.getTime());
@@ -94,12 +96,15 @@ router.get('/:id', async function (req, res) {
     cheat = results[0];
     cheat_expire = (results[0].DaysLeft * 86400000) > between;
 
+    const rows = await listproductModel.findLike(req.session.authUser.id, req.params.id);
+
     res.render('productdetail', {
         product: results[0],
         unsold: results[0].CurrentPrice < results[0].Threshold,
         bidable: (results[0].DaysLeft * 86400000) > between,
         remain: Math.floor(((results[0].DaysLeft * 86400000) - between) / 86400000),
-        leastprice: results[0].CurrentPrice + 10
+        leastprice: results[0].CurrentPrice + 10,
+        notliked: rows.length === 0
     });
 })
 
@@ -113,11 +118,11 @@ router.post('/:id', async function (req, res) {
         console.log('Wrong input!')
         return res.redirect(`/listproduct/${cheat.Id}`);
     }
-    if(!cheat_expire) {
+    if (!cheat_expire) {
         console.log('Bidding expired!')
         return res.redirect(`/listproduct/${cheat.Id}`);
     }
-    if(cheat.CurrentPrice >= cheat.Threshold) {
+    if (cheat.CurrentPrice >= cheat.Threshold) {
         console.log('Product already sold!')
         return res.redirect(`/listproduct/${cheat.Id}`);
     }
@@ -146,7 +151,21 @@ router.post('/:id', async function (req, res) {
 })
 
 router.post('/:id/like', async function (req, res) {
-    console.log(req.body.ID);
+    if (!req.session.isAuthenticated) {
+        return res.redirect('/account/login');
+    }
+    //console.log(req.body.ID);
+    const rows = await listproductModel.findLike(req.session.authUser.id, req.body.ID);
+    if (rows.length === 0) {
+        const like = {
+            UserId: req.session.authUser.id,
+            ProId: req.body.ID
+        }
+        const ret = await listproductModel.addLike(like);
+    }
+    else {
+        const ret = await listproductModel.delLike(req.session.authUser.id, req.body.ID);
+    }
     res.redirect(`/listproduct/${cheat.Id}`);
 })
 

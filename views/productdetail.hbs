@@ -78,7 +78,11 @@
                         <h4 class="p-stock">
                             Thời gian kết thúc: <span>
                                 {{#if bidable}}
+                                {{#if unsold}}
                                 {{this.remain}} ngày
+                                {{else}}
+                                Không còn đấu giá
+                                {{/if}}
                                 {{else}}
                                 Không còn đấu giá
                                 {{/if}}
@@ -101,8 +105,8 @@
                     <!-- Lưu sản phẩm yêu thích -->
                     <form action="/listproduct/:id/like" method="POST">
                         <input name="ID" type="hidden" value="{{this.product.Id}}"></input>
-                        <input class="site-btn" type="submit" value="LIKE" />
-                        <a class="wishlist-btn color-666666"><i class="fa fa-heart-o"></i></a>
+                        <input class="site-btn" type="submit" {{#if notliked}} value="Like" {{else}} value="Unlike"
+                            {{/if}}></input>
                     </form>
 
                     <div id="accordion" class="accordion-area">

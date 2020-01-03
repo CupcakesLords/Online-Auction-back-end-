@@ -31,11 +31,10 @@
 		  wishbtn
 	  --------------------*/
 	$('.wishlist-btn').on('click', function () {
-                            $(this).toggleClass('color-f151167 color-666666');
-                            var element = $('.wishlist-btn > i');
-                            element.toggleClass('fa-heart fa-heart-o');
-                        });
-	
+		$(this).toggleClass('color-f151167 color-666666');
+		var element = $('.wishlist-btn > i');
+		element.toggleClass('fa-heart fa-heart-o');
+	});
 	/*------------------
 		  go to forgetpassword page button
 	  --------------------*/
@@ -116,7 +115,7 @@
 		save(mess);
 	});
 
-	$('.show-contact').on('click', function(){
+	$('.show-contact').on('click', function () {
 		var numberPhone = `0936425244`;
 		$(this).html(numberPhone);
 	});

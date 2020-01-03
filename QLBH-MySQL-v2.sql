@@ -70,5 +70,13 @@ CREATE TABLE Bids (
  PRIMARY KEY (id));
  
  SELECT * FROM Bids;
- DROP TABLE Bids
+ DROP TABLE Bids;
+ 
+ CREATE TABLE Likes (
+ Id INT NOT NULL auto_increment,
+ UserId VARCHAR(50) NOT NULL,
+ ProId VARCHAR(50) NOT NULL,
+ PRIMARY KEY(Id));
+ 
+ SELECT * FROM Likes;
 
