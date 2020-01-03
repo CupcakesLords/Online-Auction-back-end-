@@ -38,15 +38,15 @@
                     <h3 class="p-price">Giá hiện tại: ${{this.product.CurrentPrice}}</h3>
                     <h3 class="p-price">Giá mua ngay: ${{this.product.Threshold}}</h3>
                     <h4 class="p-stock">Tình trạng: <span>
-                        {{#if bidable}}
+                            {{#if bidable}}
                             {{#if unsold}}
-                                Đang đấu giá
+                            Đang đấu giá
                             {{else}}
-                                Không còn đấu giá
+                            Không còn đấu giá
                             {{/if}}
-                        {{else}}
-                        Không còn đấu giá
-                        {{/if}}</span></h4>
+                            {{else}}
+                            Không còn đấu giá
+                            {{/if}}</span></h4>
                     <h4 class="p-stock">
                         <a href="/listproduct/{{this.product.Id}}/history"><span>Lịch sử đấu giá</span></a>
                     </h4>
@@ -87,19 +87,23 @@
                     </div>
 
                     {{#if bidable}}
-                        {{#if unsold}}
-                            <form action="/listproduct/:id" method="POST">
-                                <input type="text" name="BID" placeholder="Enter BID: (at least {{this.leastprice}}$)" />
-                                <input class="site-btn" type="submit" value="BID" />
-                            </form>
-                        {{else}}
-        
-                        {{/if}}
+                    {{#if unsold}}
+                    <form action="/listproduct/:id" method="POST">
+                        <input type="text" name="BID" placeholder="Enter BID: (at least {{this.leastprice}}$)" />
+                        <input class="site-btn" type="submit" value="BID" />
+                    </form>
+                    {{else}}
+
+                    {{/if}}
                     {{else}}
                     {{/if}}
 
                     <!-- Lưu sản phẩm yêu thích -->
-                    <a class="wishlist-btn color-666666" id="like" name="like"><i class="fa fa-heart-o"></i></a>
+                    <form action="/listproduct/:id/like" method="POST">
+                        <input name="ID" type="hidden" value="{{this.product.Id}}"></input>
+                        <input class="site-btn" type="submit" value="LIKE" />
+                        <a class="wishlist-btn color-666666"><i class="fa fa-heart-o"></i></a>
+                    </form>
 
                     <div id="accordion" class="accordion-area">
                         <div class="panel">

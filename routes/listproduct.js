@@ -145,10 +145,21 @@ router.post('/:id', async function (req, res) {
     res.redirect(`/listproduct/${cheat.Id}`);
 })
 
+router.post('/:id/like', async function (req, res) {
+    console.log(req.body.ID);
+    res.redirect(`/listproduct/${cheat.Id}`);
+})
+
 router.get('/:id/history', async function (req, res) {
 
     const results = await listproductModel.single(req.params.id);
     const bids = await listproductModel.allBidsByID(req.params.id);
+    //console.log(bids.length);
+    for (i = 0; i < bids.length; i++) {
+        //console.log(bids[i].UserName);
+        bids[i].UserName = "******" + bids[i].UserName.substr(bids[i].UserName.length / 2, bids[i].UserName.length);
+        //console.log(bids[i].UserName);
+    }
     const temp = req.params.id;
 
     res.render('historybid', {

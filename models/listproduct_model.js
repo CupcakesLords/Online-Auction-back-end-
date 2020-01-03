@@ -23,6 +23,7 @@ module.exports = {
     single: id => db.load(`select * from Product where Id = ${id}`),
     add: bid => db.add(bid, 'Bids'),
     allBidsByID: id => db.load(`select * from Bids where ProductId = ${id}`),
+    countBidsByID: id => db.load(`select count(*) as total from Bids where ProductId = ${id}`),
     fixCurrent: (id, newprice) => db.load(`update Product set CurrentPrice = ${newprice} where Id = ${id}`),
     //UPDATE `productlist`.`Product` SET `CurrentPrice` = '200' WHERE (`Id` = '7');
 }
