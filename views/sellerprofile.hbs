@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-4 profile-picture text-center">
-                    <img src="../images/profilepicture.png" alt="" width="200px" height="200px" />
+                    <img src="/images/profilepicture.png" alt="" width="200px" height="200px" />
                     <a href="updateprofile.html" class="update-profile-btn">
                         <h5 class="m-t-10 font-weight-bold">
                             <i class="fa fa-plus"></i> Cập nhật thông tin
@@ -20,12 +20,12 @@
                 <div class="col-4">
                     <div class="info-profile fs-18">
                         <h6 class="d-inline font-weight-bold fs-18">Họ tên:</h6>
-                        <span>Nguyễn Văn A</span>
+                        <span>{{this.user.name}}</span>
                         <br />
                         <h6 class="d-inline font-weight-bold fs-18">Điểm đánh giá:</h6>
                         <span>86 điểm</span> <br />
                         <h6 class="d-inline font-weight-bold fs-18">Email:</h6>
-                        <span>nva@gmail.com</span> <br />
+                        <span>{{this.user.email}}</span> <br />
                         <h6 class="d-inline font-weight-bold fs-18">Phân quyền:</h6>
                         <span>Người bán</span>
                         <div class="social-sharing">
@@ -58,52 +58,37 @@
                             </div>
                             <div id="collapse1" class="collapse show" aria-labelledby="headingOne"
                                 data-parent="#accordion">
+                                {{#if nolike}}
                                 <div class="panel-body">
-                                    <h3>Macbook Pro 2017</h3>
+                                    <h3>Wow such empty, go like something!</h3>
+                                </div>
+                                {{else}}
+                                {{#each this.like}}
+                                <div class="panel-body">
+                                    <h3>{{ProductName}}</h3>
                                     <div class="row">
                                         <div class="col-3">
-                                            <img src="../images/laptop/laptop-macbookpro-2017.png" alt="" width="200px"
-                                                height="200px" />
+                                            <img src={{Image}} alt="" width="200px" height="200px" />
                                         </div>
                                         <div class="col-5 p-t-20">
                                             <p>
-                                                Cung cấp bởi: <a href="#">Nguyễn Văn Ba</a>
-                                                <br /> Ngày đăng: 1/11/2019
-                                                <br /> Thời gian còn lại: 2 ngày nữa
+                                                Cung cấp bởi: <a href="#">{{name}}</a> <br />
+                                                Ngày đăng: {{UploadDate}} <br />
+                                                Thời gian đấu giá từ ngày đăng: {{DaysLeft}}
                                             </p>
                                             <a href="#" class="btn-del p-r-25">Xoá</a>
-                                            <a href="../productdetail.html">Xem chi tiết sản phẩm</a>
+                                            <a href="/listproduct/{{Id}}">Xem chi tiết sản phẩm</a>
                                         </div>
                                         <div class="col-4 p-t-20">
                                             <p>
-                                                Giá hiện tại: 29,000,000 vnđ <br /> Giá mua ngay: 49,000,000 vnđ
+                                                Giá hiện tại: {{CurrentPrice}} $ <br />
+                                                Giá mua ngay: {{Threshold}} $
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="panel-body">
-                                    <h3>Dell XPS15</h3>
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <img src="../images/laptop/laptop-xps15.png" alt="" width="200px"
-                                                height="200px" />
-                                        </div>
-                                        <div class="col-5 p-t-20">
-                                            <p>
-                                                Cung cấp bởi: <a href="#">Nguyễn Văn Ba</a>
-                                                <br /> Ngày đăng: 1/11/2019
-                                                <br /> Thời gian còn lại: 2 ngày nữa
-                                            </p>
-                                            <a href="#" class="btn-del p-r-25">Xoá</a>
-                                            <a href="../productdetail.html">Xem chi tiết sản phẩm</a>
-                                        </div>
-                                        <div class="col-4 p-t-20">
-                                            <p>
-                                                Giá hiện tại: 19,000,000 vnđ <br /> Giá mua ngay: 39,000,000 vnđ
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                {{/each}}
+                                {{/if}}
                             </div>
                         </div>
                         <div class="panel">

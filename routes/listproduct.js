@@ -109,8 +109,6 @@ router.get('/:id', async function (req, res) {
 })
 
 router.post('/:id', async function (req, res) {
-    //console.log(req.body.BID);
-    //console.log(cheat.Id);
     if (!req.session.isAuthenticated) {
         return res.redirect('/account/login');
     }
@@ -187,6 +185,5 @@ router.get('/:id/history', async function (req, res) {
         bids,
     });
 })
-
 
 module.exports = router;

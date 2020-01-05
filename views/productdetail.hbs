@@ -1,3 +1,17 @@
+{{#section 'js'}}
+<script>
+    /*
+    $('#bidform').submit(function (event) {
+        event.preventDefault();
+        validate();
+    });
+    function validate() {
+        var bid = $('#BIDD').val();
+        alert(bid);
+    }
+    */
+</script>
+{{/section}}
 <!-- main content -->
 
 <div class="main-content">
@@ -92,8 +106,9 @@
 
                     {{#if bidable}}
                     {{#if unsold}}
-                    <form action="/listproduct/:id" method="POST">
-                        <input type="text" name="BID" placeholder="Enter BID: (at least {{this.leastprice}}$)" />
+                    <form action="/listproduct/:id" method="POST" id="bidform">
+                        <input type="text" name="BID" id="BIDD"
+                            placeholder="Enter BID: (at least {{this.leastprice}}$)" />
                         <input class="site-btn" type="submit" value="BID" />
                     </form>
                     {{else}}

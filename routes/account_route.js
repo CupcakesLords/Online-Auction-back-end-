@@ -23,10 +23,22 @@ router.get('/profile', async function(req, res){
         res.render('adminprofile', {layout: 'main2'});
     }
     else if(cur.permission === 1) {
-        res.render('sellerprofile');
+        const like = await userModel.getlikes(cur.id);
+        res.render('sellerprofile', {
+            like,
+            user: cur,
+            seller: cur.permission === 1,
+            nolike: like.length === 0
+        });
     }
     else if(cur.permission === 0) {
-        res.render('bidderprofile');
+        const like = await userModel.getlikes(cur.id);
+        res.render('bidderprofile', {
+            like,
+            user: cur,
+            bidder: cur.permission === 0,
+            nolike: like.length === 0
+        });
     }
 })
 

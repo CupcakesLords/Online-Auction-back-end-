@@ -78,5 +78,12 @@ CREATE TABLE Bids (
  ProId VARCHAR(50) NOT NULL,
  PRIMARY KEY(Id));
  
- SELECT * FROM Likes;
+SELECT P.ProductName, P.Image, U.name, P.UploadDate, P.DaysLeft, P.CurrentPrice, P.Threshold
+FROM Product P 
+JOIN Likes L ON P.Id = L.ProId
+JOIN Users U ON L.UserId = U.id 
+WHERE U.id = 16
+
+SELECT * FROM Likes L
+WHERE L.UserId = 16
 
