@@ -2,6 +2,18 @@ const express = require('express');
 const moment = require('moment');
 const bcrypt = require('bcryptjs');
 const userModel = require('../models/user_model');
+const multer = require('multer');
+//const upload = multer({ dest:'images/user/' });
+
+const storage = multer.diskStorage({
+    filename: function(req, file, cb) {
+        cb(null, file.originalname)
+    },
+    destination: function(req, file, cb) {
+        cb(null, `./images/user/`)
+    },
+});
+const upload = multer({storage});
 
 const router = express.Router();
 
@@ -93,6 +105,26 @@ router.post('/register', async function(req, res){
     }
     const ret = await userModel.add(entity);
     res.render('registration');
+})
+
+router.get('/upload', async function(req, res){
+    if(!req.session.isAuthenticated)
+    {
+        return res.redirect('/account/login');
+    }
+    const cur = req.session.authUser;
+    if(cur.permission === 1)
+    {
+        res.render('uploadproduct');
+    }
+    else
+    {
+        res.redirect('/');
+    }
+})
+
+router.post('/upload', upload.array('fileProduct', 5), async function(req, res){
+    res.render('uploadproduct');
 })
 
 module.exports = router;

@@ -16,6 +16,6 @@ module.exports = {
     SELECT P.ProductName, P.Image, U.name, P.UploadDate, P.DaysLeft, P.CurrentPrice, P.Threshold, P.Id, P.SellerID
     FROM Product P 
     JOIN Likes L ON P.Id = L.ProId
-    JOIN Users U ON L.UserId = U.id 
-    WHERE U.id = ${userID}`),
+    JOIN Users U ON P.SellerID = U.id 
+    WHERE L.UserId = ${userID}`),
 }

@@ -1,0 +1,75 @@
+<!-- main content -->
+
+<div class="main-content">
+    <div class="registration-page container p-tb-40">
+        <div class="post-content">
+            <form method="POST" id="post-form" class="post-form" novalidate enctype="multipart/form-data">
+                <h2 class="post-form-title text-center">Đăng sản phẩm</h2>
+                <div class="row p-t-15">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <span class="label-input">Tên sản phẩm</span>
+                            <input type="text" class="form-input" name="nameProduct" id="nameProduct"
+                                placeholder="Nhập tên sản phẩm" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <span class="label-input">Giá khởi điểm (đơn vị: vnđ)</span>
+                            <input type="number" class="form-input" step="10000" name="startingPriceProduct"
+                                id="startingPriceProduct" min="10000" placeholder="Nhập giá khởi điểm (vnđ)" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <span class="label-input">Bước giá (đơn vị: vnđ)</span>
+                            <input type="number" class="form-input" step="10000" name="stepPriceProduct"
+                                id="stepPriceProduct" min="10000" placeholder="Nhập bước giá (vnđ)" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <span class="label-input">Giá mua ngay (đơn vị: vnđ)</span>
+                            <input type="number" step="10000" class="form-input" name="bestPrice" id="bestPrice"
+                                min="100000" placeholder="Nhập giá mua ngày (vnđ)" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <span class="label-input">Mô tả chi tiết sản phẩm</span>
+                            <textarea name="descriptionProduct" id="descriptionProduct" cols="30" rows="10"
+                                class="form-input w-100" placeholder="Nhập mô tả sản phẩm"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <span class="label-input">Đính kèm ảnh sản phẩm</span>
+                            <input type="file" name="fileProduct" id="fileProduct" class="form-input" multiple />
+                            <p class="label-input">Tự động gia hạn</p>
+                            <input type="radio" name="extendProduct" value="yes" class="m-l-20 d-inline" />
+                            <span class="fs-16">Có</span> <br />
+                            <input type="radio" name="extendProduct" value="no" class="m-l-20 d-inline" />
+                            <span class="fs-16">Không</span> <br />
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center fs-20">
+                    <i class="fa fa-arrow-left" style="color: #007bff;"></i>
+                    <a href="profile.html">
+                        Quay lại
+                    </a>
+                </div>
+                <div class="container-login-form-btn p-tb-25">
+                    <div class="wrap-login-form-btn  w-25">
+                        <div class="login-form-bgbtn"></div>
+                        <button class="login-form-btn">
+                            Đăng sản phẩm
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- main content end -->
