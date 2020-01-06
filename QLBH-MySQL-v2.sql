@@ -17,18 +17,19 @@ CREATE TABLE Product (
  Image VARCHAR(255) NOT NULL,
  CatID INT NOT NULL,
  SellerID INT NOT NULL,
+ Description VARCHAR(1000) NOT NULL,
  PRIMARY KEY (Id));
  
-INSERT INTO Product VALUES(1, 'Macbook Pro 2017', 150, 500, 1600, '2019-2-20', 5, 15, '/images/laptop/laptop-macbookpro-2017.png', 1, 17);
-INSERT INTO Product VALUES(2, 'Vivobook 14', 200, 700, 1000, '2019-2-1', 23, 11, '/images/laptop/laptop-vivobook-14.png', 1, 17);
-INSERT INTO Product VALUES(3, 'Laptop xps 15', 300, 600, 2000, '2019-5-11', 2, 14, '/images/laptop/laptop-xps15.png', 1, 17);
-INSERT INTO Product VALUES(4, 'Phone 1', 100, 200, 1000, '2019-7-21', 4, 5, '/images/phone/phone1.png', 2, 17);
-INSERT INTO Product VALUES(5, 'Phone 2', 100, 200, 1000, '2019-7-21', 4, 5, '/images/phone/phone2.png', 2, 17);
-INSERT INTO Product VALUES(6, 'Phone 3', 100, 200, 1000, '2019-7-21', 4, 5, '/images/phone/phone3.png', 2, 17);
-INSERT INTO Product VALUES(7, 'Phone 4', 100, 200, 1000, '2019-7-21', 4, 5, '/images/phone/phone4.png', 2, 17);
-INSERT INTO Product VALUES(8, 'Phone 5', 100, 200, 1000, '2019-7-21', 4, 5, '/images/phone/phone5.png', 2, 17);
-INSERT INTO Product VALUES(9, 'Laptop RedMiBook', 300, 600, 2000, '2019-5-11', 2, 14, '/images/laptop/laptop-redmibook.png', 1, 17);
-INSERT INTO Product VALUES(10, 'Laptop Rog Strix', 300, 600, 2000, '2019-5-11', 2, 14, '/images/laptop/laptop-rog-strix.png', 1, 17);
+INSERT INTO Product VALUES(1, 'Macbook Pro 2017', 150, 500, 1600, '2019-12-20', 100, 15, '/images/laptop/laptop-macbookpro-2017.png', 1, 17, 'No description');
+INSERT INTO Product VALUES(2, 'Vivobook 14', 200, 700, 1000, '2019-12-20', 100, 11, '/images/laptop/laptop-vivobook-14.png', 1, 17, 'No description');
+INSERT INTO Product VALUES(3, 'Laptop xps 15', 300, 600, 2000, '2019-12-20', 100, 14, '/images/laptop/laptop-xps15.png', 1, 17, 'No description');
+INSERT INTO Product VALUES(4, 'Phone 1', 100, 200, 1000, '2019-12-20', 100, 5, '/images/phone/phone1.png', 2, 17, 'No description');
+INSERT INTO Product VALUES(5, 'Phone 2', 100, 200, 1000, '2019-12-21', 100, 5, '/images/phone/phone2.png', 2, 17, 'No description');
+INSERT INTO Product VALUES(6, 'Phone 3', 100, 200, 1000, '2019-12-21', 100, 5, '/images/phone/phone3.png', 2, 17, 'No description');
+INSERT INTO Product VALUES(7, 'Phone 4', 100, 200, 1000, '2019-12-21', 100, 5, '/images/phone/phone4.png', 2, 17, 'No description');
+INSERT INTO Product VALUES(8, 'Phone 5', 100, 200, 1000, '2019-12-21', 100, 5, '/images/phone/phone5.png', 2, 17, 'No description');
+INSERT INTO Product VALUES(9, 'Laptop RedMiBook', 300, 600, 2000, '2019-12-11', 10, 14, '/images/laptop/laptop-redmibook.png', 1, 17, 'No description');
+INSERT INTO Product VALUES(10, 'Laptop Rog Strix', 300, 600, 2000, '2019-12-11', 10, 14, '/images/laptop/laptop-rog-strix.png', 1, 17, 'No description');
 
 DROP TABLE Product;
 SELECT * FROM Product;
@@ -71,6 +72,7 @@ CREATE TABLE Bids (
  
  SELECT * FROM Bids;
  DROP TABLE Bids;
+ DROP TABLE Likes;
  
  CREATE TABLE Likes (
  Id INT NOT NULL auto_increment,
@@ -78,11 +80,11 @@ CREATE TABLE Bids (
  ProId VARCHAR(50) NOT NULL,
  PRIMARY KEY(Id));
  
-SELECT P.ProductName, P.Image, U.name, P.UploadDate, P.DaysLeft, P.CurrentPrice, P.Threshold
+SELECT P.ProductName, P.Image, U.name, P.UploadDate, P.DaysLeft, P.CurrentPrice, P.Threshold, P.Id, P.SellerID
 FROM Product P 
 JOIN Likes L ON P.Id = L.ProId
 JOIN Users U ON L.UserId = U.id 
-WHERE U.id = 16
+WHERE U.id = 16;
 
 SELECT * FROM Likes L
 WHERE L.UserId = 16

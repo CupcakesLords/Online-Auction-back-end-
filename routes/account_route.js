@@ -5,36 +5,25 @@ const userModel = require('../models/user_model');
 const multer = require('multer');
 //const upload = multer({ dest:'images/user/' });
 
-const storage = multer.diskStorage({
-    filename: function(req, file, cb) {
-        cb(null, file.originalname)
-    },
-    destination: function(req, file, cb) {
-        cb(null, `./images/user/`)
-    },
-});
-const upload = multer({storage});
-
 const router = express.Router();
 
-router.get('/register', async function(req, res){
+router.get('/register', async function (req, res) {
     res.render('registration');
 })
 
-router.get('/login', async function(req, res){
+router.get('/login', async function (req, res) {
     res.render('login');
 })
 
-router.get('/profile', async function(req, res){
-    if(!req.session.isAuthenticated)
-    {
+router.get('/profile', async function (req, res) {
+    if (!req.session.isAuthenticated) {
         return res.redirect('/account/login');
     }
     const cur = req.session.authUser;
-    if(cur.permission === 2) {
-        res.render('adminprofile', {layout: 'main2'});
+    if (cur.permission === 2) {
+        res.render('adminprofile', { layout: 'main2' });
     }
-    else if(cur.permission === 1) {
+    else if (cur.permission === 1) {
         const like = await userModel.getlikes(cur.id);
         res.render('sellerprofile', {
             like,
@@ -43,7 +32,7 @@ router.get('/profile', async function(req, res){
             nolike: like.length === 0
         });
     }
-    else if(cur.permission === 0) {
+    else if (cur.permission === 0) {
         const like = await userModel.getlikes(cur.id);
         res.render('bidderprofile', {
             like,
@@ -54,21 +43,21 @@ router.get('/profile', async function(req, res){
     }
 })
 
-router.post('/logout', async function(req, res){
+router.post('/logout', async function (req, res) {
     req.session.isAuthenticated = false;
     req.session.authUser = null;
     res.redirect('/');
 })
 
-router.post('/login', async function(req, res){
+router.post('/login', async function (req, res) {
     const user = await userModel.singleByUserName(req.body.username);
-    if(user === null) {
+    if (user === null) {
         return res.render('login', {
             err_message: 'Invalid username or password'
         })
     }
     const rs = bcrypt.compareSync(req.body.password, user.password_hash);
-    if(rs === false) {
+    if (rs === false) {
         return res.render('login', {
             err_message: 'Invalid password or password'
         })
@@ -80,7 +69,7 @@ router.post('/login', async function(req, res){
     res.redirect('/account/profile');
 })
 
-router.post('/register', async function(req, res){
+router.post('/register', async function (req, res) {
     const hash = bcrypt.hashSync(req.body.password, 10);
     const dob = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY/MM/DD');
     console.log(req.body.dob);
@@ -93,12 +82,12 @@ router.post('/register', async function(req, res){
         permission: 0
     }
     const user = await userModel.singleByUserName(req.body.username);
-    if(!(user === null)) {
+    if (!(user === null)) {
         return res.render('registration', {
             err_message: 'Username already existed!'
         })
     }
-    if(!(req.body.password === req.body.re_password)) {
+    if (!(req.body.password === req.body.re_password)) {
         return res.render('registration', {
             err_message: 'Password and retyped password do not match!'
         })
@@ -107,24 +96,41 @@ router.post('/register', async function(req, res){
     res.render('registration');
 })
 
-router.get('/upload', async function(req, res){
-    if(!req.session.isAuthenticated)
-    {
+router.get('/upload', async function (req, res) {
+    if (!req.session.isAuthenticated) {
         return res.redirect('/account/login');
     }
     const cur = req.session.authUser;
-    if(cur.permission === 1)
-    {
+    if (cur.permission === 1) {
         res.render('uploadproduct');
     }
-    else
-    {
+    else {
         res.redirect('/');
     }
 })
 
-router.post('/upload', upload.array('fileProduct', 5), async function(req, res){
-    res.render('uploadproduct');
+router.post('/upload', async function (req, res) {
+    //console.log(req.body.descriptionProduct);
+    //console.log(req.body.cate);
+    //res.send('ok');
+    const storage = multer.diskStorage({
+        filename: function (req, file, cb) {
+            cb(null, file.originalname)
+        },
+        destination: function (req, file, cb) {
+            cb(null, `./images/user/`)
+        },
+    });
+    const upload = multer({ storage });
+
+    upload.array('fileProduct', 5)(req, res, function (err) {
+        if (err) {
+
+        } else {
+            console.log(req.files[0]);
+            res.render('uploadproduct');
+        }
+    })
 })
 
 module.exports = router;

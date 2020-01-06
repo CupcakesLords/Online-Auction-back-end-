@@ -1,3 +1,19 @@
+{{#section 'js'}}
+<script
+    src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ezd73nxbzc7bu6e86g2l82jbbffke0mwevwrnyvc5q8h89j6"></script>
+<script>
+    tinymce.init({
+        selector: '#descriptionProduct',
+        height: 300,
+        plugins: 'paste image link autolink lists table media',
+        menubar: false,
+        toolbar: [
+            'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media',
+        ],
+    })
+</script>
+{{/section}}
+
 <!-- main content -->
 
 <div class="main-content">
@@ -15,23 +31,23 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <span class="label-input">Giá khởi điểm (đơn vị: vnđ)</span>
+                            <span class="label-input">Giá khởi điểm (đơn vị: USD)</span>
                             <input type="number" class="form-input" step="10000" name="startingPriceProduct"
-                                id="startingPriceProduct" min="10000" placeholder="Nhập giá khởi điểm (vnđ)" />
+                                id="startingPriceProduct" min="10000" placeholder="Nhập giá khởi điểm (USD)" />
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <span class="label-input">Bước giá (đơn vị: vnđ)</span>
-                            <input type="number" class="form-input" step="10000" name="stepPriceProduct"
-                                id="stepPriceProduct" min="10000" placeholder="Nhập bước giá (vnđ)" />
+                            <span class="label-input">Số ngày đấu giá (tối đa: 100)</span>
+                            <input type="number" class="form-input" step="1" name="stepPriceProduct"
+                                id="stepPriceProduct" min="1" max="100" placeholder="Nhập số ngày" />
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <span class="label-input">Giá mua ngay (đơn vị: vnđ)</span>
+                            <span class="label-input">Giá mua ngay (đơn vị: USD)</span>
                             <input type="number" step="10000" class="form-input" name="bestPrice" id="bestPrice"
-                                min="100000" placeholder="Nhập giá mua ngày (vnđ)" />
+                                min="100000" placeholder="Nhập giá mua ngày (USD)" />
                         </div>
                     </div>
                     <div class="col-6">
@@ -45,11 +61,13 @@
                         <div class="form-group">
                             <span class="label-input">Đính kèm ảnh sản phẩm</span>
                             <input type="file" name="fileProduct" id="fileProduct" class="form-input" multiple />
-                            <p class="label-input">Tự động gia hạn</p>
-                            <input type="radio" name="extendProduct" value="yes" class="m-l-20 d-inline" />
-                            <span class="fs-16">Có</span> <br />
-                            <input type="radio" name="extendProduct" value="no" class="m-l-20 d-inline" />
-                            <span class="fs-16">Không</span> <br />
+                            <span class="label-input">What category is your product?</span>
+                            <select class="mdb-select md-form" name="cate" id="cate">
+                                <option value="" disabled selected>Choose category</option>
+                                {{#each lcCategories}}
+                                <option value="{{id}}">{{category}}</option>
+                                {{/each}}
+                            </select>
                         </div>
                     </div>
                 </div>
