@@ -1,4 +1,4 @@
-# Online-Auction-back-end-
+# Online-Auction-back-end
 Fully functional website for online auction (express js)
 
 Team members
