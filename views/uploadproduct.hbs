@@ -19,7 +19,7 @@
 <div class="main-content">
     <div class="registration-page container p-tb-40">
         <div class="post-content">
-            <form method="POST" id="post-form" class="post-form" novalidate enctype="multipart/form-data">
+            <form method="POST" id="post-form" class="post-form" enctype="multipart/form-data">
                 <h2 class="post-form-title text-center">Đăng sản phẩm</h2>
                 <div class="row p-t-15">
                     <div class="col-6">
@@ -32,8 +32,8 @@
                     <div class="col-6">
                         <div class="form-group">
                             <span class="label-input">Giá khởi điểm (đơn vị: USD)</span>
-                            <input type="number" class="form-input" step="10000" name="startingPriceProduct"
-                                id="startingPriceProduct" min="10000" placeholder="Nhập giá khởi điểm (USD)" />
+                            <input type="number" class="form-input" step="10" name="startingPriceProduct"
+                                id="startingPriceProduct" min="100" placeholder="Nhập giá khởi điểm (USD)" />
                         </div>
                     </div>
                     <div class="col-6">
@@ -46,24 +46,24 @@
                     <div class="col-6">
                         <div class="form-group">
                             <span class="label-input">Giá mua ngay (đơn vị: USD)</span>
-                            <input type="number" step="10000" class="form-input" name="bestPrice" id="bestPrice"
-                                min="100000" placeholder="Nhập giá mua ngày (USD)" />
+                            <input type="number" step="10" class="form-input" name="bestPrice" id="bestPrice"
+                                min="100" placeholder="Nhập giá mua ngay (USD)" />
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <span class="label-input">Mô tả chi tiết sản phẩm</span>
+                            <span class="label-input">Mô tả chi tiết sản phẩm (tối đa 1000 chữ)</span>
                             <textarea name="descriptionProduct" id="descriptionProduct" cols="30" rows="10"
                                 class="form-input w-100" placeholder="Nhập mô tả sản phẩm"></textarea>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <span class="label-input">Đính kèm ảnh sản phẩm</span>
+                            <span class="label-input">Đính kèm ảnh sản phẩm (tối đa: 5)</span>
                             <input type="file" name="fileProduct" id="fileProduct" class="form-input" multiple />
                             <span class="label-input">What category is your product?</span>
                             <select class="mdb-select md-form" name="cate" id="cate">
-                                <option value="" disabled selected>Choose category</option>
+                                <option value="0" disabled selected>Choose category</option>
                                 {{#each lcCategories}}
                                 <option value="{{id}}">{{category}}</option>
                                 {{/each}}

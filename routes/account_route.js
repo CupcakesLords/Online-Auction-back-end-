@@ -123,14 +123,52 @@ router.post('/upload', async function (req, res) {
     });
     const upload = multer({ storage });
 
-    upload.array('fileProduct', 5)(req, res, function (err) {
+    upload.array('fileProduct', 5)(req, res, async function (err) {
         if (err) {
-
-        } else {
+            res.send('errors when uploading images');
+        }
+        else {
             console.log(req.files[0]);
-            res.render('uploadproduct');
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            today = yyyy + '/' + mm + '/' + dd;
+            const entity = {
+                ProductName: req.body.nameProduct,
+                CurrentPrice: req.body.startingPriceProduct,
+                HighestPrice: req.body.bestPrice,
+                Threshold: req.body.bestPrice,
+                UploadDate: today,
+                DaysLeft: req.body.stepPriceProduct, //number of bid day
+                Bids: 0,
+                Image: '\\' + req.files[0].path,
+                CatID: req.body.cate,
+                SellerID: req.session.authUser.id,
+                Description: req.body.descriptionProduct,
+            }
+            console.log(entity);
+            if (req.body.startingPriceProduct >= req.body.bestPrice) {
+                console.log("Price not okay!");
+                return res.render('uploadproduct');
+            }
+            else if (req.body.cate === undefined || req.body.cate === 0) {
+                console.log("Categories not okay!");
+                return res.render('uploadproduct');
+            }
+            else {
+                const ret = await userModel.uploadProduct(entity);
+                return res.render('uploadproduct');
+            }
         }
     })
+
 })
 
 module.exports = router;

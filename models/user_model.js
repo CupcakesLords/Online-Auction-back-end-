@@ -18,4 +18,5 @@ module.exports = {
     JOIN Likes L ON P.Id = L.ProId
     JOIN Users U ON P.SellerID = U.id 
     WHERE L.UserId = ${userID}`),
+    uploadProduct: entity => db.add(entity, 'Product'),
 }
