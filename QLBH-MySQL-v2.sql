@@ -34,6 +34,9 @@ INSERT INTO Product VALUES(10, 'Laptop Rog Strix', 300, 600, 2000, '2019-12-11',
 DROP TABLE Product;
 SELECT * FROM Product;
 
+SELECT * FROM Product
+WHERE NOW() BETWEEN UploadDate AND DATE_ADD(UploadDate, INTERVAL DaysLeft DAY) AND CurrentPrice < Threshold AND SellerID = 17;
+
 CREATE TABLE Users (
  id INT NOT NULL auto_increment,
  username VARCHAR(50) NOT NULL,
@@ -120,5 +123,13 @@ from Product P
 join Users U on P.SellerID = U.id
 where P.Id = 10;
 
+select * from Bids;
 select MAX(Price), UserName, UserId from Bids where ProductId = 1;
+
+SELECT * 
+FROM Bids WHERE (Id, Price) IN 
+( SELECT Id, MAX(Price)
+  FROM Bids
+  GROUP BY Id
+)
 

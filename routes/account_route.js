@@ -25,11 +25,17 @@ router.get('/profile', async function (req, res) {
     }
     else if (cur.permission === 1) {
         const like = await userModel.getlikes(cur.id);
+        const bid = await userModel.getbids(cur.id);
+        const sell = await userModel.getSelling(cur.id);
         res.render('sellerprofile', {
             like,
+            bid,
+            sell,
             user: cur,
             seller: cur.permission === 1,
-            nolike: like.length === 0
+            nolike: like.length === 0,
+            nobid: bid.length === 0,
+            nosell: sell.length === 0
         });
     }
     else if (cur.permission === 0) {
@@ -40,7 +46,8 @@ router.get('/profile', async function (req, res) {
             bid,
             user: cur,
             bidder: cur.permission === 0,
-            nolike: like.length === 0
+            nolike: like.length === 0,
+            nobid: bid.length === 0
         });
     }
 })

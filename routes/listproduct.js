@@ -97,7 +97,12 @@ router.get('/:id', async function (req, res) {
     const links = await listproductModel.getImages(req.params.id);
     const sell = await listproductModel.getSellerWithProduct(req.params.id);
     const max = await listproductModel.maxBidByID(req.params.id);
-
+    var mb;
+    if(max.length === 0) {
+        mb = null;
+    } else {
+        mb = max[max.length - 1];
+    }
     res.render('productdetail', {
         product: results[0],
         unsold: results[0].CurrentPrice < results[0].Threshold,
@@ -107,8 +112,8 @@ router.get('/:id', async function (req, res) {
         notliked: rows.length === 0,
         links,
         seller: sell[0], //name, id
-        maxbid: max[0], //MAX(Price), UserName, UserId
-        nobids: max[0].UserName === null,
+        maxbid: mb, //UserName, UserId
+        nobids: max.length === 0,
     });
 })
 

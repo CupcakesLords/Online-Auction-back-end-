@@ -107,10 +107,15 @@
                             <div class="panel-header" id="headingTwo">
                                 <button class="panel-link" data-toggle="collapse" data-target="#collapse2"
                                     aria-expanded="false" aria-controls="collapse2">
-                                    Danh sách đang đấu giá
+                                    Danh sách đấu giá
                                 </button>
                             </div>
                             <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                {{#if nobid}}
+                                <div class="panel-body">
+                                    <h3>Wow such empty, go bid something!</h3>
+                                </div>
+                                {{else}}
                                 {{#each this.bid}}
                                 <div class="panel-body">
                                     <h3>{{ProductName}}</h3>
@@ -137,6 +142,7 @@
                                     </div>
                                 </div>
                                 {{/each}}
+                                {{/if}}
                             </div>
                         </div>
                         <div class="panel">

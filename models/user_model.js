@@ -24,6 +24,10 @@ module.exports = {
     JOIN Bids L ON P.Id = L.ProductId
     JOIN Users U ON P.SellerID = U.id 
     WHERE L.UserId = ${userID}`),
+    getSelling: userID => db.load(`
+    SELECT * FROM Product
+    WHERE NOW() BETWEEN UploadDate AND DATE_ADD(UploadDate, INTERVAL DaysLeft DAY) AND CurrentPrice < Threshold AND SellerID = ${userID};
+    `),
     uploadProduct: entity => db.add(entity, 'Product'),
     getIdWithImage: link => db.load(`select Id from Product where ProductName = '${link}'`),
     addImage: temp => db.add(temp, 'Images'),
