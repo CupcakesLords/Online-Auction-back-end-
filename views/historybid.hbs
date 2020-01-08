@@ -14,23 +14,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="product-pic-zoom">
-                        <img class="product-big-img" src="/images/laptop/laptop-macbookpro-2017.png" alt="" />
-                    </div>
-                    <div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none;">
-                        <div class="product-thumbs-track">
-                            <div class="pt active" data-imgbigurl="./images/laptop/macbookpro-2017-1.webp">
-                                <img src="/images/laptop/macbookpro-2017-1.webp" alt="" />
-                            </div>
-                            <div class="pt" data-imgbigurl="./images/laptop/macbookpro-2017-2.webp">
-                                <img src="/images/laptop/macbookpro-2017-2.webp" alt="" />
-                            </div>
-                            <div class="pt" data-imgbigurl="./images/laptop/macbookpro-2017-3.webp">
-                                <img src="/images/laptop/macbookpro-2017-3.webp" alt="" />
-                            </div>
-                            <div class="pt" data-imgbigurl="./images/laptop/laptop-macbookpro-2017.png">
-                                <img src="/images/laptop/laptop-macbookpro-2017.png" alt="" />
-                            </div>
-                        </div>
+                        <img class="product-big-img" src={{this.product.Image}} alt="" />
                     </div>
                 </div>
                 <div class="col-lg-6 product-details">
@@ -42,6 +26,13 @@
                                 <th>Người mua</th>
                                 <th>Giá</th>
                             </tr>
+                            {{#if nobids}}
+                            <tr>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                            </tr>
+                            {{else}}
                             {{#each this.bids}}
                             <tr>
                                 <td>{{BidDate}}</td>
@@ -49,6 +40,7 @@
                                 <td>${{Price}}</td>
                             </tr>
                             {{/each}}
+                            {{/if}}
                         </table>
                     </div>
                 </div>

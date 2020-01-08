@@ -111,31 +111,32 @@
                                 </button>
                             </div>
                             <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                {{#each this.bid}}
                                 <div class="panel-body">
-                                    <h3>Dell XPS15</h3>
+                                    <h3>{{ProductName}}</h3>
                                     <div class="row">
                                         <div class="col-3">
-                                            <img src="../images/laptop/laptop-xps15.png" alt="" width="200px"
+                                            <img src={{Image}} alt="" width="200px"
                                                 height="200px" />
                                         </div>
                                         <div class="col-5 p-t-20">
                                             <p>
-                                                Cung cấp bởi: <a href="#">Nguyễn Văn Ba</a> <br />
-                                                Ngày đăng: 1/11/2019 <br />
-                                                Thời gian còn lại: 2 ngày nữa
+                                                Cung cấp bởi: <a href="#">{{name}}</a> <br />
+                                                Ngày đăng: {{UploadDate}} <br />
+                                                Thời gian đấu giá kể từ ngày đăng: {{DaysLeft}} ngày
                                             </p>
                                             <a href="#" class="btn-del p-r-25">Xoá</a>
-                                            <a href="../productdetail.html">Xem chi tiết sản phẩm</a>
+                                            <a href="/listproduct/{{Id}}">Xem chi tiết sản phẩm</a>
                                         </div>
                                         <div class="col-4 p-t-20">
                                             <p>
-                                                Giá hiện tại: 19,000,000 vnđ <br />
-                                                Giá mua ngay: 39,000,000 vnđ <br />
-                                                Người ra giá cao hiện tại: Nguyễn Văn C
+                                                Giá hiện tại: {{CurrentPrice}} $ <br />
+                                                Giá mua ngay: {{Threshold}} $ <br />
                                             </p>
                                         </div>
                                     </div>
                                 </div>
+                                {{/each}}
                             </div>
                         </div>
                         <div class="panel">

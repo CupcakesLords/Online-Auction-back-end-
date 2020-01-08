@@ -108,6 +108,7 @@ router.get('/:id', async function (req, res) {
         links,
         seller: sell[0], //name, id
         maxbid: max[0], //MAX(Price), UserName, UserId
+        nobids: max[0].UserName === null,
     });
 })
 
@@ -186,6 +187,7 @@ router.get('/:id/history', async function (req, res) {
         product: results[0],
         temp,
         bids,
+        nobids: bids.length === 0,
     });
 })
 

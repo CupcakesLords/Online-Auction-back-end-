@@ -18,6 +18,12 @@ module.exports = {
     JOIN Likes L ON P.Id = L.ProId
     JOIN Users U ON P.SellerID = U.id 
     WHERE L.UserId = ${userID}`),
+    getbids: userID => db.load(`
+    SELECT P.ProductName, P.Image, U.name, P.UploadDate, P.DaysLeft, P.CurrentPrice, P.Threshold, P.Id, P.SellerID
+    FROM Product P 
+    JOIN Bids L ON P.Id = L.ProductId
+    JOIN Users U ON P.SellerID = U.id 
+    WHERE L.UserId = ${userID}`),
     uploadProduct: entity => db.add(entity, 'Product'),
     getIdWithImage: link => db.load(`select Id from Product where ProductName = '${link}'`),
     addImage: temp => db.add(temp, 'Images'),

@@ -34,8 +34,10 @@ router.get('/profile', async function (req, res) {
     }
     else if (cur.permission === 0) {
         const like = await userModel.getlikes(cur.id);
+        const bid = await userModel.getbids(cur.id);
         res.render('bidderprofile', {
             like,
+            bid,
             user: cur,
             bidder: cur.permission === 0,
             nolike: like.length === 0

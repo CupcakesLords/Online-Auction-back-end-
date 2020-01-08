@@ -73,7 +73,13 @@
                     <div class="info-product">
                         <h4 class="p-stock">
                             Thông tin người đặt giá cao nhất & điểm đánh giá:
-                            <span class="span1">{{this.max.UserName}} (86 điểm)</span>
+                            <span class="span1">
+                                {{#if nobids}}
+                                No bids yet
+                                {{else}}
+                                {{this.maxbid.UserName}} (86 điểm)
+                                {{/if}}
+                            </span>
                         </h4>
                     </div>
                     <div class="info-product">

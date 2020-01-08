@@ -86,6 +86,18 @@ JOIN Likes L ON P.Id = L.ProId
 JOIN Users U ON L.UserId = U.id 
 WHERE U.id = 16;
 
+SELECT P.ProductName, P.Image, U.name, P.UploadDate, P.DaysLeft, P.CurrentPrice, P.Threshold, P.Id, P.SellerID
+FROM Product P 
+JOIN Bids L ON P.Id = L.ProductId
+JOIN Users U ON L.UserId = U.id 
+WHERE U.id = 16;
+
+SELECT P.ProductName, P.Image, U.name, P.UploadDate, P.DaysLeft, P.CurrentPrice, P.Threshold, P.Id, P.SellerID
+    FROM Product P 
+    JOIN Bids L ON P.Id = L.ProductId
+    JOIN Users U ON P.SellerID = U.id 
+    WHERE L.UserId = 16
+
 SELECT * FROM Likes L
 WHERE L.UserId = 16;
 
