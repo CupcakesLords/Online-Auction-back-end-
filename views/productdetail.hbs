@@ -32,18 +32,11 @@
                     </div>
                     <div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none;">
                         <div class="product-thumbs-track">
-                            <div class="pt active" data-imgbigurl="images/laptop/macbookpro-2017-1.webp">
-                                <img src="/images/laptop/macbookpro-2017-1.webp" alt="" />
+                            {{#each links}}
+                            <div class="pt active" data-imgbigurl={{Link}}>
+                                <img src={{Link}} alt="" />
                             </div>
-                            <div class="pt" data-imgbigurl="images/laptop/macbookpro-2017-2.webp">
-                                <img src="/images/laptop/macbookpro-2017-2.webp" alt="" />
-                            </div>
-                            <div class="pt" data-imgbigurl="images/laptop/macbookpro-2017-3.webp">
-                                <img src="/images/laptop/macbookpro-2017-3.webp" alt="" />
-                            </div>
-                            <div class="pt" data-imgbigurl="images/laptop/laptop-macbookpro-2017.png">
-                                <img src="/images/laptop/laptop-macbookpro-2017.png" alt="" />
-                            </div>
+                            {{/each}}
                         </div>
                     </div>
                 </div>
@@ -74,13 +67,13 @@
                     <div class="info-product">
                         <h4 class="p-stock">
                             Thông tin người bán & điểm đánh giá:
-                            <span class="span1">Admin (80 điểm)</span>
+                            <span class="span1">{{this.seller.name}} (80 điểm)</span>
                         </h4>
                     </div>
                     <div class="info-product">
                         <h4 class="p-stock">
                             Thông tin người đặt giá cao nhất & điểm đánh giá:
-                            <span class="span1">Admin1 (86 điểm)</span>
+                            <span class="span1">{{this.max.UserName}} (86 điểm)</span>
                         </h4>
                     </div>
                     <div class="info-product">
@@ -135,7 +128,7 @@
                             <div id="collapse1" class="collapse show" aria-labelledby="headingOne"
                                 data-parent="#accordion">
                                 <div class="panel-body">
-                                    {{this.product.Description}}
+                                    {{{this.product.Description}}}
                                 </div>
                             </div>
                         </div>

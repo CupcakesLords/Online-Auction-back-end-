@@ -19,4 +19,6 @@ module.exports = {
     JOIN Users U ON P.SellerID = U.id 
     WHERE L.UserId = ${userID}`),
     uploadProduct: entity => db.add(entity, 'Product'),
+    getIdWithImage: link => db.load(`select Id from Product where ProductName = '${link}'`),
+    addImage: temp => db.add(temp, 'Images'),
 }

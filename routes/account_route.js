@@ -128,7 +128,12 @@ router.post('/upload', async function (req, res) {
             res.send('errors when uploading images');
         }
         else {
-            console.log(req.files[0]);
+            //console.log(req.files[0]);
+            if (req.files.length === 0 || req.files === undefined) {
+                return res.render('uploadproduct', {
+                    err_message: 'Product images are required!'
+                });
+            }
             var today = new Date();
             var dd = today.getDate();
             var mm = today.getMonth() + 1;
@@ -155,15 +160,29 @@ router.post('/upload', async function (req, res) {
             }
             console.log(entity);
             if (req.body.startingPriceProduct >= req.body.bestPrice) {
-                console.log("Price not okay!");
-                return res.render('uploadproduct');
+                //console.log("Price not okay!");
+                return res.render('uploadproduct', {
+                    err_message: 'Starting price needs to be lower than threshold price!'
+                });
             }
             else if (req.body.cate === undefined || req.body.cate === 0) {
                 console.log("Categories not okay!");
-                return res.render('uploadproduct');
+                return res.render('uploadproduct', {
+                    err_message: 'Please pick a category for your product!'
+                });
             }
             else {
                 const ret = await userModel.uploadProduct(entity);
+                const link = req.body.nameProduct;
+                const ID = await userModel.getIdWithImage(link);
+                console.log(ID[0].Id);
+                for (const c of req.files) {
+                    const temp = {
+                        ProId: ID[0].Id,
+                        Link: '\\' + c.path,
+                    }
+                    const ret1 = await userModel.addImage(temp);
+                }
                 return res.render('uploadproduct');
             }
         }

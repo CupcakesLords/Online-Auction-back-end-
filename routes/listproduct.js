@@ -88,15 +88,15 @@ router.get('/:id', async function (req, res) {
         return res.redirect('/account/login');
     }
     const results = await listproductModel.single(req.params.id);
-    //const bids = await listproductModel.allBidsByID(req.params.id);
-    //console.log(results[0].UploadDate.getTime());
     var between = Date.now() - results[0].UploadDate.getTime();
-    //console.log(between);
 
     cheat = results[0];
     cheat_expire = (results[0].DaysLeft * 86400000) > between;
 
     const rows = await listproductModel.findLike(req.session.authUser.id, req.params.id);
+    const links = await listproductModel.getImages(req.params.id);
+    const sell = await listproductModel.getSellerWithProduct(req.params.id);
+    const max = await listproductModel.maxBidByID(req.params.id);
 
     res.render('productdetail', {
         product: results[0],
@@ -104,7 +104,10 @@ router.get('/:id', async function (req, res) {
         bidable: (results[0].DaysLeft * 86400000) > between,
         remain: Math.floor(((results[0].DaysLeft * 86400000) - between) / 86400000),
         leastprice: results[0].CurrentPrice + 10,
-        notliked: rows.length === 0
+        notliked: rows.length === 0,
+        links,
+        seller: sell[0], //name, id
+        maxbid: max[0], //MAX(Price), UserName, UserId
     });
 })
 

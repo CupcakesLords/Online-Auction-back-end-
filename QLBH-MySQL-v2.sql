@@ -87,5 +87,26 @@ JOIN Users U ON L.UserId = U.id
 WHERE U.id = 16;
 
 SELECT * FROM Likes L
-WHERE L.UserId = 16
+WHERE L.UserId = 16;
+
+select P.Image from Product P 
+where P.Image = '\images\user\679229.png';
+
+CREATE TABLE Images (
+ Id INT NOT NULL auto_increment,
+ ProId VARCHAR(50) NOT NULL,
+ Link VARCHAR(255) NOT NULL,
+ PRIMARY KEY(Id));
+ 
+ SELECT * FROM Images;
+ select Link from Images where ProId = 15;
+ 
+ DROP TABLE Images;
+ 
+select U.name, U.id 
+from Product P
+join Users U on P.SellerID = U.id
+where P.Id = 10;
+
+select MAX(Price), UserName, UserId from Bids where ProductId = 1;
 

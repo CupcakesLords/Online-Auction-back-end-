@@ -19,6 +19,27 @@
 <div class="main-content">
     <div class="registration-page container p-tb-40">
         <div class="post-content">
+            {{#if err_message}}
+            <div class="row">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="
+            position: fixed;
+            display: block; 
+            width: 300px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            transform: translate(-50%, -50%);
+            z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+            cursor: pointer; /* Add a pointer on hover */
+          ">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{err_message}}
+                </div>
+            </div>
+            {{/if}}
             <form method="POST" id="post-form" class="post-form" enctype="multipart/form-data">
                 <h2 class="post-form-title text-center">Đăng sản phẩm</h2>
                 <div class="row p-t-15">
@@ -46,8 +67,8 @@
                     <div class="col-6">
                         <div class="form-group">
                             <span class="label-input">Giá mua ngay (đơn vị: USD)</span>
-                            <input type="number" step="10" class="form-input" name="bestPrice" id="bestPrice"
-                                min="100" placeholder="Nhập giá mua ngay (USD)" />
+                            <input type="number" step="10" class="form-input" name="bestPrice" id="bestPrice" min="100"
+                                placeholder="Nhập giá mua ngay (USD)" />
                         </div>
                     </div>
                     <div class="col-6">
