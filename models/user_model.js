@@ -12,6 +12,7 @@ module.exports = {
 
         return null;
     },
+    singlePro: id => db.load(`select * from Product where Id = ${id}`),
     getlikes: userID => db.load(`
     SELECT P.ProductName, P.Image, U.name, P.UploadDate, P.DaysLeft, P.CurrentPrice, P.Threshold, P.Id, P.SellerID
     FROM Product P 
@@ -27,6 +28,15 @@ module.exports = {
     getSelling: userID => db.load(`
     SELECT * FROM Product
     WHERE NOW() BETWEEN UploadDate AND DATE_ADD(UploadDate, INTERVAL DaysLeft DAY) AND CurrentPrice < Threshold AND SellerID = ${userID};
+    `),
+    getSold: userID => db.load(`
+    select * from Product 
+    where CurrentPrice > Threshold and SellerID = ${userID}`),
+    getBought: userID => db.load(`
+    select P.* 
+    from SucBids S
+    join Product P on S.ProductId = P.Id
+    where S.UserId = ${userID};
     `),
     uploadProduct: entity => db.add(entity, 'Product'),
     getIdWithImage: link => db.load(`select Id from Product where ProductName = '${link}'`),

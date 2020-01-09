@@ -1,0 +1,50 @@
+<!-- main content -->
+
+<div class="main-content">
+    <div class="page-top-info">
+        <div class="container">
+            <h4>Đánh giá</h4>
+        </div>
+    </div>
+    <section class="feedback-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-5">
+                    <h4 class="p-b-20">GỬI ĐÁNH GIÁ CỦA BẠN</h4>
+                    <form action="" method="post">
+                        <div class="d-inline p-t-15">
+                            <h5 class="d-inline">1. Đánh giá của bạn:</h5>
+                            <select class="mdb-select md-form" name="rev" id="rev">
+                                <option value="0" disabled selected>Like or dislike?</option>
+                                <option value="1">Like</option>
+                                <option value="2">Dislike</option>
+                            </select>
+                        </div>
+                        <h5 class="p-t-15 p-b-5">2. Tiêu đề nhận xét:</h5>
+                        <input type="text" name="feedback-seller-header" id="feedback-seller-header"
+                            class="feedback-input-text" placeholder="Nhập tiêu đề đánh giá (không bắt buộc)" />
+                        <h5 class="p-t-15 p-b-5">3. Nội dung nhận xét:</h5>
+                        <textarea name="feedback-seller-content" id="fb-seller-content" cols="30" rows="10"
+                            class="feedback-textarea-text" placeholder="Nhập nội dung đánh giá"></textarea>
+                        <h5 class="p-t-15 p-b-5">4. Hình ảnh(nếu có):</h5>
+                        <input type="file" name="file-fb" id="file-fb" multiple />
+                        <button type="submit" class="btn btn-primary m-t-15">
+                            Gửi đánh giá
+                        </button>
+                        <input name="ProId" type="hidden" value="{{this.product.Id}}"></input>
+                        <input name="UserId" type="hidden" value="{{this.user.id}}"></input>
+                        <input name="SellerId" type="hidden" value="{{this.product.SellerID}}"></input>
+                    </form>
+                </div>
+                <div class="col-7">
+                    <div class="d-inline-block">
+                        <img src={{this.product.Image}} alt="" width="200px" height="200px" />
+                        <h3>{{this.product.ProductName}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- main content end -->

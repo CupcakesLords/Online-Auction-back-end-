@@ -154,30 +154,37 @@
                             </div>
                             <div id="collapse3" class="collapse" aria-labelledby="headingThree"
                                 data-parent="#accordion">
+                                {{#if nobought}}
                                 <div class="panel-body">
-                                    <h3>Asus ROG STRIX</h3>
+                                    <h3>Wow such empty, go bid something!</h3>
+                                </div>
+                                {{else}}
+                                {{#each this.bought}}
+                                <div class="panel-body">
+                                    <h3>{{ProductName}}</h3>
                                     <div class="row">
                                         <div class="col-3">
-                                            <img src="../images/laptop/laptop-rog-strix.png" alt="" width="200px"
+                                            <img src={{Image}} alt="" width="200px"
                                                 height="200px" />
                                         </div>
                                         <div class="col-5 p-t-20">
                                             <p>
-                                                Cung cấp bởi: <a href="#">Nguyễn Văn Ba</a> <br />
-                                                Ngày đăng: 1/11/2019 <br />
-                                                Thời gian còn lại: 2 ngày nữa
+                                                Ngày đăng: {{UploadDate}} <br />
+                                                Thời gian đấu giá từ ngày đăng: {{DaysLeft}} ngày
                                             </p>
-                                            <a href="#" class="btn-del p-r-25">Đánh giá</a>
-                                            <a href="../productdetail.html">Xem chi tiết sản phẩm</a>
+                                            <a href="/account/review/{{Id}}" class="btn-del p-r-25">Đánh giá</a>
+                                            <a href="/listproduct/{{Id}}">Xem chi tiết sản phẩm</a>
                                         </div>
                                         <div class="col-4 p-t-20">
                                             <p>
-                                                Giá mua: 29,000,000 vnđ <br />
+                                                Giá mua: {{CurrentPrice}} $ <br />
                                                 Kết quả: Thành công
                                             </p>
                                         </div>
                                     </div>
                                 </div>
+                                {{/each}}
+                                {{/if}}
                             </div>
                         </div>
                         <div class="panel">

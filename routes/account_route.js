@@ -26,28 +26,37 @@ router.get('/profile', async function (req, res) {
     else if (cur.permission === 1) {
         const like = await userModel.getlikes(cur.id);
         const bid = await userModel.getbids(cur.id);
+        const bought = await userModel.getBought(cur.id);
         const sell = await userModel.getSelling(cur.id);
+        const sold = await userModel.getSold(cur.id);
         res.render('sellerprofile', {
             like,
             bid,
+            bought,
             sell,
+            sold,
             user: cur,
             seller: cur.permission === 1,
             nolike: like.length === 0,
             nobid: bid.length === 0,
-            nosell: sell.length === 0
+            nosell: sell.length === 0,
+            nosold: sold.length === 0,
+            nobought: bought.length === 0
         });
     }
     else if (cur.permission === 0) {
         const like = await userModel.getlikes(cur.id);
         const bid = await userModel.getbids(cur.id);
+        const bought = await userModel.getBought(cur.id);
         res.render('bidderprofile', {
             like,
             bid,
+            bought,
             user: cur,
             bidder: cur.permission === 0,
             nolike: like.length === 0,
-            nobid: bid.length === 0
+            nobid: bid.length === 0,
+            nobought: bought.length === 0
         });
     }
 })
@@ -197,6 +206,25 @@ router.post('/upload', async function (req, res) {
         }
     })
 
+})
+
+router.get('/review/:id', async function (req, res) {
+    if (!req.session.isAuthenticated) {
+        return res.redirect('/account/login');
+    }
+    const pro = await userModel.singlePro(req.params.id);
+    console.log(pro);
+    const cur = req.session.authUser;
+    res.render('review', {
+        product: pro[0],
+        user: cur
+    });
+})
+
+router.post('/review/:id', async function (req, res) {
+    console.log(req.body.UserId);
+    console.log(req.body.SellerId)
+    res.redirect(`/account/review/${req.body.ProId}`);
 })
 
 module.exports = router;

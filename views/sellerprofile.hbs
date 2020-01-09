@@ -141,29 +141,37 @@
                             </div>
                             <div id="collapse3" class="collapse" aria-labelledby="headingThree"
                                 data-parent="#accordion">
+                                {{#if nobought}}
                                 <div class="panel-body">
-                                    <h3>Asus ROG STRIX</h3>
+                                    <h3>Wow such empty, go bid something!</h3>
+                                </div>
+                                {{else}}
+                                {{#each this.bought}}
+                                <div class="panel-body">
+                                    <h3>{{ProductName}}</h3>
                                     <div class="row">
                                         <div class="col-3">
-                                            <img src="../images/laptop/laptop-rog-strix.png" alt="" width="200px"
+                                            <img src={{Image}} alt="" width="200px"
                                                 height="200px" />
                                         </div>
                                         <div class="col-5 p-t-20">
                                             <p>
-                                                Cung cấp bởi: <a href="#">Nguyễn Văn Ba</a>
-                                                <br /> Ngày đăng: 1/11/2019
-                                                <br /> Thời gian còn lại: 2 ngày nữa
+                                                Ngày đăng: {{UploadDate}} <br />
+                                                Thời gian đấu giá từ ngày đăng: {{DaysLeft}} ngày
                                             </p>
-                                            <a href="../viewseller/feedback.html" class="fb-seller p-r-25">Đánh giá</a>
-                                            <a href="../productdetail.html">Xem chi tiết sản phẩm</a>
+                                            <a href="#" class="btn-del p-r-25">Đánh giá</a>
+                                            <a href="/listproduct/{{Id}}">Xem chi tiết sản phẩm</a>
                                         </div>
                                         <div class="col-4 p-t-20">
                                             <p>
-                                                Giá mua: 29,000,000 vnđ <br /> Kết quả: Thành công
+                                                Giá mua: {{CurrentPrice}} $ <br />
+                                                Kết quả: Thành công
                                             </p>
                                         </div>
                                     </div>
                                 </div>
+                                {{/each}}
+                                {{/if}}
                             </div>
                         </div>
                         <div class="panel">
@@ -174,6 +182,11 @@
                                 </button>
                             </div>
                             <div id="collapse4" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                                {{#if nosell}}
+                                <div class="panel-body">
+                                    <h3>Wow such empty, go sell something!</h3>
+                                </div>
+                                {{else}}
                                 {{#each this.sell}}
                                 <div class="panel-body">
                                     <h3>{{ProductName}}</h3>
@@ -198,6 +211,7 @@
                                     </div>
                                 </div>
                                 {{/each}}
+                                {{/if}}
                             </div>
                         </div>
 
@@ -209,28 +223,36 @@
                                 </button>
                             </div>
                             <div id="collapse5" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                                {{#if nosold}}
                                 <div class="panel-body">
-                                    <h3>Dell XPS15</h3>
+                                    <h3>Wow such empty, go buy something!</h3>
+                                </div>
+                                {{else}}
+                                {{#each this.sold}}
+                                <div class="panel-body">
+                                    <h3>{{ProductName}}</h3>
                                     <div class="row">
                                         <div class="col-3">
-                                            <img src="../images/laptop/laptop-xps15.png" alt="" width="200px"
+                                            <img src={{Image}} alt="" width="200px"
                                                 height="200px" />
                                         </div>
                                         <div class="col-5 p-t-20">
                                             <p>
-                                                Cung cấp bởi: <a href="#">Nguyễn Văn A</a>
-                                                <br /> Ngày đăng: 1/11/2019
+                                                <br /> Ngày đăng: {{UploadDate}}
                                             </p>
-                                            <a href="feedback.html" class="p-r-25">Đánh giá người mua</a>
+                                            <a href="/listproduct/{{Id}}" class="p-r-25">Thêm chi tiết sản phẩm</a>
+                                            <a href="/account/review/{{Id}}" class="p-r-25">Đánh giá người mua</a>
                                             <a href="../productdetail.html" class="btn-cancel">Huỷ giao dịch</a>
                                         </div>
                                         <div class="col-4 p-t-20">
                                             <p>
-                                                Giá bán: 19,000,000 vnđ <br /> Người mua: Nguyễn Văn C
+                                                Giá bán: {{CurrentPrice}} $ <br /> 
                                             </p>
                                         </div>
                                     </div>
                                 </div>
+                                {{/each}}
+                                {{/if}}
                             </div>
                         </div>
 

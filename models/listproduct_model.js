@@ -22,6 +22,7 @@ module.exports = {
     },
     single: id => db.load(`select * from Product where Id = ${id}`),
     add: bid => db.add(bid, 'Bids'),
+    addSucBid: bid => db.add(bid, 'SucBids'),
     allBidsByID: id => db.load(`select * from Bids where ProductId = ${id}`),
     countBidsByID: id => db.load(`select count(*) as total from Bids where ProductId = ${id}`),
     maxBidByID: id => db.load(`select UserName, UserId from Bids where ProductId = ${id}`),

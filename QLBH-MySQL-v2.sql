@@ -99,13 +99,7 @@ SELECT P.ProductName, P.Image, U.name, P.UploadDate, P.DaysLeft, P.CurrentPrice,
     FROM Product P 
     JOIN Bids L ON P.Id = L.ProductId
     JOIN Users U ON P.SellerID = U.id 
-    WHERE L.UserId = 16
-
-SELECT * FROM Likes L
-WHERE L.UserId = 16;
-
-select P.Image from Product P 
-where P.Image = '\images\user\679229.png';
+    WHERE L.UserId = 16;
 
 CREATE TABLE Images (
  Id INT NOT NULL auto_increment,
@@ -113,23 +107,34 @@ CREATE TABLE Images (
  Link VARCHAR(255) NOT NULL,
  PRIMARY KEY(Id));
  
- SELECT * FROM Images;
- select Link from Images where ProId = 15;
+SELECT * FROM Images;
+select Link from Images where ProId = 15;
  
- DROP TABLE Images;
+DROP TABLE Images;
  
 select U.name, U.id 
 from Product P
 join Users U on P.SellerID = U.id
 where P.Id = 10;
 
-select * from Bids;
-select MAX(Price), UserName, UserId from Bids where ProductId = 1;
+select * from Product 
+where CurrentPrice > Threshold;
 
-SELECT * 
-FROM Bids WHERE (Id, Price) IN 
-( SELECT Id, MAX(Price)
-  FROM Bids
-  GROUP BY Id
-)
+CREATE TABLE SucBids (
+ Id INT NOT NULL auto_increment,
+ UserId VARCHAR(50) NOT NULL,
+ UserName VARCHAR(50) NOT NULL,
+ ProductId VARCHAR(50) NOT NULL,
+ BidDate DATETIME NOT NULL,
+ Price DOUBLE NOT NULL,
+ PRIMARY KEY (id));
+ 
+select * from SucBids;
+ 
+select P.* 
+from Bids S
+join Product P on S.ProductId = P.Id
+where S.UserId = 16;
+
+
 

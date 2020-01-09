@@ -154,6 +154,9 @@ router.post('/:id', async function (req, res) {
     }
     const ret = await listproductModel.add(bid);
     const ret1 = await listproductModel.fixCurrent(cheat.Id, req.body.BID);
+    if (req.body.BID >= cheat.Threshold) {
+        const ret2 = await listproductModel.addSucBid(bid);
+    }
     res.redirect(`/listproduct/${cheat.Id}`);
 })
 
