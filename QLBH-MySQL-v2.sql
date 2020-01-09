@@ -136,5 +136,23 @@ from Bids S
 join Product P on S.ProductId = P.Id
 where S.UserId = 16;
 
+select * from Product where Id = 3;
+
+CREATE TABLE Reviews (
+ Id INT NOT NULL auto_increment,
+ UserId VARCHAR(50) NOT NULL,
+ ProId VARCHAR(50) NOT NULL,
+ TargetId VARCHAR(50) NOT NULL,
+ Upvote boolean NOT NULL,
+ ReviewDate DATETIME NOT NULL,
+ Review VARCHAR(500) NOT NULL,
+ PRIMARY KEY(Id));
+ 
+ select * from Reviews
+ 
+ DROP TABLE Reviews
+
+
+
 
 

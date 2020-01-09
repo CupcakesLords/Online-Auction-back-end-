@@ -29,34 +29,40 @@ router.get('/profile', async function (req, res) {
         const bought = await userModel.getBought(cur.id);
         const sell = await userModel.getSelling(cur.id);
         const sold = await userModel.getSold(cur.id);
+        const review = await userModel.getReviewsWithID(cur.id);
         res.render('sellerprofile', {
             like,
             bid,
             bought,
             sell,
             sold,
+            review,
             user: cur,
             seller: cur.permission === 1,
             nolike: like.length === 0,
             nobid: bid.length === 0,
             nosell: sell.length === 0,
             nosold: sold.length === 0,
-            nobought: bought.length === 0
+            nobought: bought.length === 0,
+            noreview: review.length === 0
         });
     }
     else if (cur.permission === 0) {
         const like = await userModel.getlikes(cur.id);
         const bid = await userModel.getbids(cur.id);
         const bought = await userModel.getBought(cur.id);
+        const review = await userModel.getReviewsWithID(cur.id);
         res.render('bidderprofile', {
             like,
             bid,
             bought,
+            review,
             user: cur,
             bidder: cur.permission === 0,
             nolike: like.length === 0,
             nobid: bid.length === 0,
-            nobought: bought.length === 0
+            nobought: bought.length === 0,
+            noreview: review.length === 0
         });
     }
 })
@@ -213,17 +219,55 @@ router.get('/review/:id', async function (req, res) {
         return res.redirect('/account/login');
     }
     const pro = await userModel.singlePro(req.params.id);
-    console.log(pro);
     const cur = req.session.authUser;
+    var user; var target;
+    if (cur.permission === 0) { //người mua review
+        user = cur; target = pro[0].SellerID;
+    }
+    else if (cur.permission === 1) { //người mua review
+        user = cur;
+        const temp = await userModel.getWinnerWithProID(pro[0].Id);
+        target = temp[0].UserId;
+    }
     res.render('review', {
         product: pro[0],
-        user: cur
+        user,
+        target,
     });
 })
 
 router.post('/review/:id', async function (req, res) {
-    console.log(req.body.UserId);
-    console.log(req.body.SellerId)
+    if (req.body.rev === undefined || req.body.rev === 0) {
+        console.log("Like or not?");
+        return res.redirect(`/account/review/${req.body.ProId}`);
+    }
+    if (req.body.feedback === undefined || req.body.feedback === '') {
+        console.log("What do you think?")
+        return res.redirect(`/account/review/${req.body.ProId}`);
+    }
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    var hh = today.getHours();
+    var mi = today.getMinutes();
+    var ss = today.getSeconds();
+    if (dd < 10) { dd = '0' + dd; }
+    if (mm < 10) { mm = '0' + mm; }
+    if (hh < 10) { hh = '0' + hh; }
+    if (mi < 10) { mi = '0' + mi; }
+    if (ss < 10) { ss = '0' + ss; }
+    today = yyyy + '/' + mm + '/' + dd + ' ' + hh + ':' + mi + ':' + ss;
+    const rev = {
+        UserId: req.body.UserId,
+        ProId: req.body.ProId,
+        TargetId: req.body.TargetId,
+        Upvote: req.body.rev === '1',
+        ReviewDate: today,
+        Review: req.body.feedback
+    }
+    console.log(rev);
+    const ahihi = await userModel.addReview(rev);
     res.redirect(`/account/review/${req.body.ProId}`);
 })
 

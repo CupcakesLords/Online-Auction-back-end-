@@ -297,6 +297,12 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        {{#if noreview}}
+                                        <div class="panel-body">
+                                            <h3>Wow such empty, you have no review!</h3>
+                                        </div>
+                                        {{else}}
+                                        {{#each this.review}}
                                         <div class="fb-ratings-list">
                                             <div class="fb-ratings-list-item">
                                                 <div class="fb-ratings-filter-item-avatar">
@@ -304,63 +310,23 @@
                                                         height="40px" />
                                                 </div>
                                                 <div class="fb-ratings-filter-item-content">
-                                                    <strong>User1</strong>
+                                                    <strong>User{{UserId}}</strong>
                                                     <p>
+                                                        {{#if Upvote}}
                                                         <i class="fa fa-thumbs-up">(+1)</i>
-                                                    </p>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet, consectetur
-                                                        adipisicing elit. Asperiores odio aspernatur
-                                                        exercitationem. Illo porro perspiciatis
-                                                        blanditiis nesciunt odit tenetur odio sint
-                                                        corrupti quod consectetur, molestias
-                                                        necessitatibus inventore? Id, itaque placeat.
-                                                    </p>
-                                                    <p>1/9/2019 20:40</p>
-                                                </div>
-                                            </div>
-                                            <div class="fb-ratings-list-item">
-                                                <div class="fb-ratings-filter-item-avatar">
-                                                    <img src="../images/profilepicture.png" alt="" width="40px"
-                                                        height="40px" />
-                                                </div>
-                                                <div class="fb-ratings-filter-item-content">
-                                                    <strong>User2</strong>
-                                                    <p>
-                                                        <i class="fa fa-thumbs-up">(+1)</i>
-                                                    </p>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet, consectetur
-                                                        adipisicing elit. Asperiores odio aspernatur
-                                                        exercitationem. Illo porro perspiciatis
-                                                        blanditiis nesciunt odit tenetur odio sint
-                                                        corrupti quod consectetur, molestias
-                                                        necessitatibus inventore? Id, itaque placeat.
-                                                    </p>
-                                                    <p>1/9/2019 20:40</p>
-                                                </div>
-                                            </div>
-                                            <div class="fb-ratings-list-item">
-                                                <div class="fb-ratings-filter-item-avatar">
-                                                    <img src="../images/profilepicture.png" alt="" width="40px"
-                                                        height="40px" />
-                                                </div>
-                                                <div class="fb-ratings-filter-item-content">
-                                                    <strong>User3</strong>
-                                                    <p>
+                                                        {{else}}
                                                         <i class="fa fa-thumbs-down">(-1)</i>
+                                                        {{/if}}
                                                     </p>
                                                     <p>
-                                                        Lorem ipsum dolor sit amet, consectetur
-                                                        adipisicing elit. Asperiores odio aspernatur
-                                                        exercitationem. Illo porro perspiciatis
-                                                        blanditiis nesciunt odit tenetur odio sint
-                                                        corrupti quod consectetur, molestias
-                                                        necessitatibus inventore? Id, itaque placeat.
+                                                        {{Review}}
                                                     </p>
-                                                    <p>1/9/2019 20:40</p>
+                                                    <p>{{ReviewDate}}</p>
                                                 </div>
                                             </div>
+                                        </div>
+                                        {{/each}}
+                                        {{/if}}
                                         </div>
                                     </div>
                                 </div>

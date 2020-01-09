@@ -41,4 +41,7 @@ module.exports = {
     uploadProduct: entity => db.add(entity, 'Product'),
     getIdWithImage: link => db.load(`select Id from Product where ProductName = '${link}'`),
     addImage: temp => db.add(temp, 'Images'),
+    getWinnerWithProID: id => db.load(`select * from SucBids where ProductId = ${id}`),
+    addReview: rev => db.add(rev, 'Reviews'),
+    getReviewsWithID: id => db.load(`select * from Reviews where TargetId = ${id}`),
 }
