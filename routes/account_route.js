@@ -271,4 +271,25 @@ router.post('/review/:id', async function (req, res) {
     res.redirect(`/account/review/${req.body.ProId}`);
 })
 
+router.get('/admin/listcategory', async function (req, res) {
+    if (!req.session.isAuthenticated) {
+        return res.redirect('/account/login');
+    }
+    const cur = req.session.authUser;
+    if (!cur.permission === 3) {
+        return res.redirect('/');
+    }
+    res.render('adminlistcategories', { layout: 'main2' });
+})
+
+router.post('/admin/listcategory/delete', async function (req, res) {
+    if(req.body.PN === 0) {
+        console.log('Cant delete categories with products.')
+        res.redirect('/account/admin/listcategory');
+    }
+    console.log('ok lets delete');
+    //const ret = userModel.deleteCate(req.body.ID);
+    res.redirect('/account/admin/listcategory');
+})
+
 module.exports = router;

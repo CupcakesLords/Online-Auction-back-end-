@@ -44,4 +44,5 @@ module.exports = {
     getWinnerWithProID: id => db.load(`select * from SucBids where ProductId = ${id}`),
     addReview: rev => db.add(rev, 'Reviews'),
     getReviewsWithID: id => db.load(`select * from Reviews where TargetId = ${id}`),
+    deleteCate: id => db.load(`DELETE FROM ECate WHERE id = ${id}`),
 }

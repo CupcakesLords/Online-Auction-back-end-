@@ -8,10 +8,6 @@ var cheat_expire;
 const router = express.Router();
 
 router.get('/', async function (req, res) {
-    //const results = await listproductModel.all();
-    //res.render('listproduct', {
-    //    products: results
-    //});
     const page = +req.query.page || 1;
     if (page <= 0) page = 1;
     const prev_value = page - 1;
